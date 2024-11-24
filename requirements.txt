@@ -1,1 +1,9 @@
+# Python Dependencies
 dnspython==2.4.2
+requests==2.31.0
+
+# External Dependencies
+# ExifTool: Required for metadata extraction
+# Install via Homebrew (macOS/Linux): brew install exiftool
+# Install via APT (Linux): sudo apt install libimage-exiftool-perl
+# Install on Windows: https://exiftool.org/
