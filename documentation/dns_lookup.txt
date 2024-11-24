@@ -1,0 +1,60 @@
+<h1><u>OSINTForge's DNS Lookup Feature</u></h1>
+The results of the DNS Lookup Tool display specific DNS record types that provide information about a domain.
+Here’s a brief explanation of how to understand them:
+
+1.	A Record (Address Record):
+	•	Maps the domain name to its IPv4 address.
+	•	Example Output:
+	    A Records:
+        - 93.184.216.34
+    •	Interpretation: example.com resolves to the IPv4 address 93.184.216.34.
+
+	2.	MX Record (Mail Exchange Record):
+	•	Specifies the mail servers responsible for receiving emails for the domain.
+	•	Example Output:
+	    MX Records:
+        - 10 mail.example.com.
+        - 20 mail2.example.com.
+    •	Interpretation:
+	•	mail.example.com (priority 10) is the primary mail server.
+	•	mail2.example.com (priority 20) is a backup server (higher numbers = lower priority).
+
+	3.	TXT Record (Text Record):
+	•	Contains arbitrary text, often used for verification, security (e.g., SPF, DKIM, DMARC), or other purposes.
+	•	Example Output:
+	    TXT Records:
+        - "v=spf1 include:_spf.example.com ~all"
+        - "google-site-verification=abc123"
+    •	Interpretation:
+	•	SPF record specifies which servers are authorized to send emails for the domain.
+	•	google-site-verification is for Google ownership verification.
+
+<h2>What to Look For</h2>
+
+	Security and Misconfigurations:
+	•	Missing or improperly configured SPF or DMARC records can indicate a vulnerability to email spoofing.
+	Email Servers:
+	•	Check if the domain has properly set up MX records.
+	Associated IPs:
+	•	A records reveal the domain’s hosting or public-facing servers.
+
+Example Full Output
+
+For example.com:
+Running DNS Lookup for: example.com
+
+A Records:
+ - 93.184.216.34
+
+MX Records:
+ - 10 mail.example.com.
+ - 20 mail2.example.com.
+
+TXT Records:
+ - "v=spf1 include:_spf.example.com ~all"
+
+This means:
+
+	•	The domain resolves to the IPv4 address 93.184.216.34.
+	•	Emails for the domain are handled by mail.example.com and mail2.example.com.
+	•	The domain has an SPF record for email authorization.
