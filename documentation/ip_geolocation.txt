@@ -61,3 +61,18 @@ Common Use Cases
 	•	Cross-reference geolocation data with other OSINT findings.
 3.	Network Analysis:
 	•	Use it to map external connections to your network or server logs.
+
+Enhancements to Consider
+
+1.	Support Multiple APIs:
+	•	Integrate additional APIs like ipinfo.io, ipstack, or MaxMind.
+	•	Allow users to select the API via CLI flags (e.g., -a ipinfo).
+2.	Batch Processing:
+	•	Accept a list of IPs for bulk geolocation.
+	•	Save results to a file for further analysis.
+3.	Visualize Locations on a Map:
+	•	Plot IP geolocations on a world map using libraries like folium or geopandas.
+4.	ASN (Autonomous System Number) Lookup:
+	•	Retrieve ASN data for the IP, including the organization and routing information.
+5.	Advanced Error Handling:
+	•	Add better messages for invalid IPs or API rate limits.

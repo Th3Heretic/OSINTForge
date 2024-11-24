@@ -52,3 +52,18 @@ Tips for Effective Use
 
 	•	Use known files for testing to see what metadata is extracted.
 	•	If analyzing sensitive files, remember metadata can sometimes reveal private or unnecessary details.
+
+Enhancements to Consider
+
+1.	Support for Remote Files:
+	•	Accept a URL pointing to an online file, download it temporarily, and extract metadata.
+2.	Custom Filters:
+	•	Allow users to filter metadata (e.g., show only GPS data or timestamps).
+3.	Export Results:
+	•	Save extracted metadata to a file (e.g., JSON or CSV).
+4.	Batch Metadata Extraction:
+	•	Accept multiple file paths or a directory and process all files within.
+5.	File Format Support:
+	•	Add checks for unsupported file types and notify users if ExifTool doesn’t handle them.
+6.	Enhanced GPS Handling:
+	•	Automatically link GPS data to a map (e.g., using Google Maps or OpenStreetMap).

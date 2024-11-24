@@ -58,3 +58,17 @@ This means:
 	•	The domain resolves to the IPv4 address 93.184.216.34.
 	•	Emails for the domain are handled by mail.example.com and mail2.example.com.
 	•	The domain has an SPF record for email authorization.
+
+Enhancements to Consider
+
+1.	Support Additional Record Types:
+	•	Add CNAME, NS, AAAA, and SOA record lookups.
+2.	Reverse DNS Lookup:
+	•	Accept an IP address as input and perform a reverse DNS lookup to find the associated domain name.
+3.	Batch Processing:
+	•	Accept a list of domains and perform DNS lookups for all of them.
+	•	Output results to a file (e.g., CSV or JSON).
+4.	DNS Zone Transfer Testing:
+	•	Check for improperly configured DNS servers that allow zone transfers (AXFR records).
+5.	Visualization:
+	•	Use tools like matplotlib to create a graphical representation of DNS relationships (e.g., parent domains, subdomains).
