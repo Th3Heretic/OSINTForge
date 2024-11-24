@@ -15,3 +15,8 @@
 # WHOIS Lookup
 - python-whois library: https://pypi.org/project/python-whois/
 - WHOIS Protocol Overview: https://en.wikipedia.org/wiki/WHOIS
+
+# Subdomain Enumeration
+- SecurityTrails API: https://securitytrails.com/corp/api
+- Subdomain Enumeration Overview: https://owasp.org/www-community/Subdomain_Enumeration
+
