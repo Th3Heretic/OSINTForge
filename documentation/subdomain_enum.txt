@@ -1,0 +1,12 @@
+<h1><u>OSINTForge's Subdomain Enumeration Tool</u></h1>
+
+Enhancements for Consideration
+
+1.	Wordlist-Based Enumeration:
+	•	Use a wordlist (e.g., from SecLists) to brute-force subdomains.
+2.	Batch Processing:
+	•	Accept multiple domains for enumeration.
+3.	Integration with Other APIs:
+	•	Include additional services like Shodan or Censys for advanced subdomain discovery.
+4.	Export Results:
+	•	Save discovered subdomains to a file for further analysis.
