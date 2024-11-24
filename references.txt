@@ -1,4 +1,4 @@
-# OSINTForge - References for Modules
+<h1>OSINTForge - References for Modules</h1>
 
 # DNS Lookup
 - dnspython library: https://www.dnspython.org/
