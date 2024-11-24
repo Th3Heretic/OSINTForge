@@ -1,0 +1,54 @@
+<h1><u>OSINTForge's Metadata Extraction Tool</u></h1>
+
+How It Works
+
+1.	Input:
+	•	You provide the tool with a target file (e.g., an image, PDF, or document).
+	•	The file path should be valid and accessible (e.g., /path/to/file.jpg).
+2.	Processing:
+	•	The tool uses ExifTool (via a subprocess call) to extract metadata.
+	•	Metadata includes information such as:
+	•	File type: File format and MIME type.
+	•	Timestamps: Creation, modification, or access dates.
+	•	Camera/Device details: For images, details like camera make, model, and lens used.
+	•	GPS coordinates: For images with location data.
+	•	Document properties: Author, title, and software used for PDFs or Office files.
+3.	Output:
+	•	The metadata is displayed in the terminal in a readable format.
+4.	Error Handling:
+	•	If the file is not found or ExifTool encounters an issue, the tool displays an error message.
+
+Steps to Use
+
+1.	Run the Tool:
+	•	Example:
+python osintforge.py -m metadata_extraction -t /path/to/file.jpg
+
+2.	Output Example:
+Extracting metadata from: /path/to/file.jpg
+
+Metadata Extraction Results:
+
+File Name: file.jpg
+File Size: 2 MB
+Creation Date: 2023-08-15 12:34:56
+Camera: Canon EOS 80D
+GPS Coordinates: 37.7749, -122.4194
+
+	•	This data provides insights about the file’s origin, its content, and potentially its geographic source.
+
+Common Use Cases
+
+1.	Image Analysis:
+	•	Extract GPS data to determine where a photo was taken.
+	•	Analyze device info to identify the source of a photo.
+2.	Document Investigation:
+	•	Check the author and creation software for PDFs and Word files.
+	•	Look for timestamps to understand a document’s history.
+3.	Forensic Applications:
+	•	Trace metadata to confirm authenticity or tampering.
+
+Tips for Effective Use
+
+	•	Use known files for testing to see what metadata is extracted.
+	•	If analyzing sensitive files, remember metadata can sometimes reveal private or unnecessary details.
