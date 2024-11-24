@@ -1,10 +1,10 @@
 import argparse
-from modules import dns_lookup, metadata_extraction, ip_geolocation
+from modules import dns_lookup, metadata_extraction, ip_geolocation, whois_lookup
 
 def main():
     parser = argparse.ArgumentParser(description="OSINTForge - Modular OSINT Tool")
-    parser.add_argument('-m', '--module', type=str, required=True, help="Module to run (e.g., dns_lookup, metadata_extraction, ip_geolocation)")
-    parser.add_argument('-t', '--target', type=str, required=True, help="Target for the module (e.g., example.com, file path, or IP address)")
+    parser.add_argument('-m', '--module', type=str, required=True, help="Module to run (e.g., dns_lookup, metadata_extraction, ip_geolocation, whois_lookup)")
+    parser.add_argument('-t', '--target', type=str, required=True, help="Target for the module (e.g., domain, file path, or IP address)")
     args = parser.parse_args()
 
     if args.module == 'dns_lookup':
@@ -13,6 +13,8 @@ def main():
         metadata_extraction.run(args.target)
     elif args.module == 'ip_geolocation':
         ip_geolocation.run(args.target)
+    elif args.module == 'whois_lookup':
+        whois_lookup.run(args.target)
     else:
         print(f"Module '{args.module}' not found.")
 
