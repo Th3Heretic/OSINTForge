@@ -79,9 +79,13 @@ Limitations
 
 Enhancements to Consider
 
-1.	Reverse WHOIS Lookup:
-	•	Use a paid service (e.g., WhoisXML API) to find other domains registered by the same owner.
-2.	Batch Mode:
-	•	Accept a list of domains for bulk WHOIS lookups.
-3.	Data Export:
-	•	Save WHOIS records to a CSV or JSON file for further analysis.
+1.	Batch WHOIS Lookups:
+	•	Accept a file containing multiple domains and process them sequentially.
+2.	Data Export:
+	•	Save WHOIS results to a structured format like CSV or JSON.
+3.	Reverse WHOIS:
+	•	Find other domains registered to the same entity (requires third-party APIs like WhoisXML).
+4.	Registrar Data Parsing:
+	•	Parse registrar-specific fields like abuse contacts or domain renewal notices.
+5.	Domain Expiry Alerts:
+	•	Highlight domains that are about to expire in the output.
