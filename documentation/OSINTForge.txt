@@ -1,4 +1,20 @@
-Modules to add:
+<h1><u>OSINTForge - Open-Source Intelligence Handler</u></h1>
+
+What the hell is this program?!
+
+OSINTForge is a modular and extensible open-source intelligence (OSINT) tool designed to help investigators,
+cybersecurity professionals, and enthusiasts gather and analyze publicly available information. By leveraging
+various modules, OSINTForge streamlines the process of extracting actionable data, whether it’s domain registration
+details, DNS records, IP geolocation, metadata from files, or subdomain enumeration.
+
+But why though...?
+
+The program aims to simplify OSINT workflows by providing an intuitive command-line interface (CLI) where users
+can select and execute targeted modules for specific tasks. Each module is designed to address a key aspect of
+intelligence gathering, offering accurate, efficient, and reproducible results. As a modular framework, OSINTForge
+can be easily extended with new features to adapt to the ever-changing landscape of open-source intelligence.
+
+OSINT Modules to add:
 
 1.	Reverse Image Search:
 	•	Perform reverse image lookups using Google Images or TinEye.
@@ -6,15 +22,74 @@ Modules to add:
 2.	Email Address Validation:
 	•	Verify the validity and deliverability of an email address.
 	•	Target: Email addresses (e.g., test@example.com).
-3.	Subdomain Enumeration:
-	•	Identify subdomains for a given domain.
-	•	Target: Domain names (e.g., example.com).
-4.	Port Scanning:
+3.	Port Scanning:
 	•	Perform basic port scans on an IP or domain using socket or nmap.
 	•	Target: IP addresses or domain names.
-5.	Social Media Scraper:
+4.	Social Media Scraper:
 	•	Scrape public data from social media profiles (e.g., Twitter, Instagram).
 	•	Target: Social media profile URLs.
+5.  SSL Certificate Details:
+	•	Extract SSL certificate information, including issuer, validity, and fingerprints.
+	•	Use: Python’s ssl module or external tools like OpenSSL.
+	•	Target: Domain names or IP addresses.
+6.  Reverse DNS Lookup:
+	•	Perform reverse lookups to map IP addresses back to domain names.
+	•	Use: Python’s socket.gethostbyaddr().
+7.  Traceroute:
+	•	Trace the network path to a target domain or IP.
+	•	Tools: Python’s scapy or external traceroute tools.
+	•	Target: IP addresses or domain names.
+8.  Hidden Directory and File Scanner:
+	•	Enumerate directories and files on a web server using a wordlist.
+	•	Tools: Use a dictionary attack with requests.
+	•	Target: Website URLs.
+9.  Website Technology Scanner:
+	•	Identify technologies and frameworks used on a website (e.g., CMS, JavaScript libraries).
+	•	Tools: Wappalyzer API or manual HTTP header analysis.
+	•	Target: Website URLs.
+10. Username Enumeration:
+	•	Check if a username exists on multiple platforms (e.g., Twitter, Reddit, GitHub).
+	•	Tools: Use requests or APIs of social media sites.
+	•	Target: Username string.
+11. File Hash Calculator:
+	•	Generate and compare file hashes (e.g., MD5, SHA256) for integrity verification.
+	•	Tools: Python’s hashlib.
+	•	Target: Local file paths.
+12. Code Repository Search:
+	•	Search for sensitive information (e.g., API keys, secrets) in GitHub repositories.
+	•	Tools: GitHub API.
+	•	Target: GitHub repositories or usernames.
+13. Dark Web Crawler:
+	•	Crawl and index .onion sites for specific keywords or data.
+	•	Tools: requests with Tor proxy support.
+	•	Target: .onion URLs.
+14. API Key Validator:
+	•	Test the validity of API keys for popular platforms like AWS, Google Cloud, and GitHub.
+	•	Tools: APIs of respective platforms.
+	•	Target: API key strings.
+15. Satellite Image Search:
+	•	Search for and retrieve satellite images of a given location.
+	•	Tools: Google Earth API or other satellite data providers.
+	•	Target: GPS coordinates or location names.
+16. Malware URL Scanner:
+	•	Check if a URL is malicious or flagged by security services.
+	•	Tools: VirusTotal API or similar.
+	•	Target: Website URLs.
+17. Pastebin/Leak Search:
+	•	Search Pastebin or similar sites for leaked credentials or sensitive data.
+	•	Tools: Scrape Pastebin or use APIs like HaveIBeenPwned.
+	•	Target: Email addresses or keywords.
+18. Geolocation Mapper:
+	•	Combine IP geolocation results and plot them on an interactive map.
+	•	Tools: folium or geopandas.
+	•	Target: Batch IP addresses.
+19. OSINT Report Generator:
+	•	Aggregate findings from multiple modules and export them to a professional report format (e.g., PDF or Markdown).
+	•	Tools: Python’s reportlab or markdown2pdf.
+20. Graph-Based Relationship Mapper:
+	•	Visualize relationships between domains, subdomains, IPs, and emails as a graph.
+	•	Tools: networkx or graph-tool.
+
 
 Enhancements to consider:
 
