@@ -11,3 +11,7 @@
 # IP Geolocation
 - ip-api service: https://ip-api.com/
 - IP address validation: https://en.wikipedia.org/wiki/IPv4
+
+# WHOIS Lookup
+- python-whois library: https://pypi.org/project/python-whois/
+- WHOIS Protocol Overview: https://en.wikipedia.org/wiki/WHOIS
