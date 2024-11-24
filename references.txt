@@ -7,3 +7,7 @@
 # Metadata Extraction
 - ExifTool Documentation: https://exiftool.org/
 - Common Metadata Fields: https://en.wikipedia.org/wiki/Metadata
+
+# IP Geolocation
+- ip-api service: https://ip-api.com/
+- IP address validation: https://en.wikipedia.org/wiki/IPv4
