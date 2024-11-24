@@ -1,0 +1,63 @@
+<h1><u>OSINTForge's IP Geolocation Tool</u></h1>
+
+How It Works
+
+1.	Input:
+	•	You provide the tool with an IP address to locate.
+	•	Example: 8.8.8.8 (Google’s public DNS server).
+2.	Processing:
+	•	The tool queries the ip-api.com service using the requests library.
+	•	The API responds with geolocation data for the given IP address.
+3.	Output:
+	•	The tool prints the retrieved information in the terminal, including:
+	•	IP Address: The queried IP.
+	•	Country: Country of origin.
+	•	Region: Region or state.
+	•	City: City associated with the IP.
+	•	ZIP Code: Postal/ZIP code (if available).
+	•	ISP: Internet service provider.
+	•	Coordinates: Latitude and longitude.
+4.	Error Handling:
+	•	If the input is invalid or the API fails, the tool displays an error message.
+
+Steps to Use
+
+1.	Run the Tool:
+	•	Example Command:
+python osintforge.py -m ip_geolocation -t 8.8.8.8
+
+2.	Example Output:
+Performing IP Geolocation for: 8.8.8.8
+
+Geolocation Results:
+
+IP Address: 8.8.8.8
+Country: United States
+Region: California
+City: Mountain View
+ZIP: 94043
+ISP: Google LLC
+Latitude: 37.4056, Longitude: -122.0775
+
+3.	For Invalid IPs:
+	•	Example Command:
+python osintforge.py -m ip_geolocation -t 256.256.256.256
+
+	•	Expected Output:
+Error: Invalid IP address - 256.256.256.256
+
+Key Features
+1.	Validation:
+	•	The tool validates the input to ensure it’s a proper IPv4 address before sending it to the API.
+2.	Free API:
+	•	The ip-api.com service is free and doesn’t require an API key for basic usage.
+3.	Extensibility:
+	•	The module can easily be extended to support batch processing or other geolocation APIs.
+
+Common Use Cases
+1.	Investigating Suspicious IPs:
+	•	Find the geographical origin of an IP address to assess potential risks.
+2.	OSINT Investigations:
+	•	Cross-reference geolocation data with other OSINT findings.
+3.	Network Analysis:
+	•	Use it to map external connections to your network or server logs.
