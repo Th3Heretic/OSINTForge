@@ -22,7 +22,7 @@ Steps to Use
 
 1.	Run the Tool:
 	•	Example:
-python osintforge.py -m metadata_extraction -t /path/to/file.jpg
+python osintforge.py -m metadata_extraction -t /absolute/path/to/file.jpg
 
 2.	Output Example:
 Extracting metadata from: /path/to/file.jpg
