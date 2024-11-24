@@ -1,0 +1,87 @@
+<h1><u>OSINTForge's WHOIS Lookup Tool</u></h1>
+
+How It Works
+
+1.	Input:
+	•	The tool accepts a domain name (e.g., example.com) as the target.
+	•	Example command:
+
+python osintforge.py -m whois_lookup -t example.com
+
+
+2.	Processing:
+	•	The tool uses the python-whois library to query WHOIS records for the given domain.
+	•	It fetches registration details from the WHOIS database, including:
+	•	Domain name.
+	•	Registrar information.
+	•	Creation and expiration dates.
+	•	Name servers.
+	•	Status (e.g., active, expired).
+3.	Output:
+	•	The WHOIS record is displayed in the terminal in a readable format.
+4.	Error Handling:
+	•	If the domain is invalid or no WHOIS record is found, the tool displays an error message.
+
+Steps to Use
+
+1.	Run the Tool:
+	•	Command:
+python osintforge.py -m whois_lookup -t example.com
+
+2.	Example Output:
+Performing WHOIS Lookup for: example.com
+
+WHOIS Lookup Results:
+
+Domain Name: example.com
+Registrar: VeriSign Global Registry Services
+WHOIS Server: whois.verisign-grs.com
+Creation Date: 1995-08-14
+Expiration Date: 2025-08-14
+Status: active
+Name Servers: a.iana-servers.net, b.iana-servers.net
+
+
+3.	For Invalid Domains:
+	•	Example Command:
+python osintforge.py -m whois_lookup -t invalid_domain
+
+	•	Expected Output:
+Error during WHOIS lookup: No WHOIS data found for invalid_domain
+
+
+Key Features
+
+1.	Registration Details:
+	•	Retrieve important domain ownership information, including registrar and dates.
+2.	Name Servers:
+	•	Identify the DNS servers responsible for the domain.
+3.	Domain Status:
+	•	Check if the domain is active, on hold, or expired.
+4.	Error Handling:
+	•	Handles invalid domains gracefully.
+
+Common Use Cases
+
+1.	Investigating Domains:
+	•	Understand who owns a suspicious domain or when it was registered.
+2.	Checking Domain Expiration:
+	•	Find when a domain expires to assess its current status.
+3.	OSINT Investigations:
+	•	Use WHOIS data to cross-reference with other tools (e.g., DNS lookup, IP geolocation).
+
+Limitations
+
+1.	Privacy Protection:
+	•	Many registrars anonymize WHOIS records using privacy protection services, so owner details may not be available.
+2.	Rate Limiting:
+	•	Excessive queries to the WHOIS servers might trigger rate limits.
+
+Enhancements to Consider
+
+1.	Reverse WHOIS Lookup:
+	•	Use a paid service (e.g., WhoisXML API) to find other domains registered by the same owner.
+2.	Batch Mode:
+	•	Accept a list of domains for bulk WHOIS lookups.
+3.	Data Export:
+	•	Save WHOIS records to a CSV or JSON file for further analysis.
