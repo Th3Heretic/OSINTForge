@@ -4,11 +4,13 @@ A brief rundown of the project structure:
 OSINTForge/
 ├── documentation
 │   ├── dns_lookup.txt
-│   └── metadata_extraction.txt
+│   ├── metadata_extraction.txt
+│   └── ip_geolocation.txt
 ├── modules/
 │   ├── __init__.py          # To mark this as a package
 │   ├── dns_lookup.py        # First module
-│   └── metadata_extraction.py
+│   ├── metadata_extraction.py # Second module
+│   └── ip_geolocation.py
 ├── references.txt           # Sources and methodology documentation
 ├── osintforge.py            # Main CLI script
 ├── README.md                # Project overview
@@ -28,3 +30,12 @@ _python osintforge.py -m dns_lookup -t example.com_
 -t specifies the target domain
 
 note: The target should be a domain name, not a full URL.
+
+To use the metadata_extraction tool:
+python osintforge.py -m metadata_extraction -t absolute/path/to/image.jpg
+
+-m once again specifies the module
+-t is specifying the target image filepath
+
+To use the ip_geolocation tool:
+python osintforge.py -m ip_geolocation -t 
