@@ -9,6 +9,7 @@ OSINTForge/
 │   ├── OSINTForge.txt
 │   ├── subdomain_enum.txt
 │   ├── ip_geolocation.txt
+│   ├── website_metadata.txt
 │   └── whois_lookup.txt
 ├── modules/
 │   ├── __init__.py          # To mark this as a package
@@ -17,6 +18,7 @@ OSINTForge/
 │   ├── port_scanner.py      # Sixth module
 │   ├── subdomain_enum.py    # Fifth module
 │   ├── ip_geolocation.py    # Third module
+│   ├── website_metadata.py
 │   └── whois_lookup.py      # Fourth module
 ├── references.txt           # Sources and methodology documentation
 ├── osintforge.py            # Main CLI script
@@ -70,3 +72,5 @@ _python osintforge.py -m port_scanner -t 8.8.8.8_
 
     -t specifies a target IP to audit for open ports
 
+To use the website_metadata tool:
+python osintforge.py -m website_metadata -t example.com
