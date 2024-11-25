@@ -28,3 +28,8 @@
 - BeautifulSoup Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 - HTTP Headers Overview: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
 
+# Email Validation
+- Email Regex Guide: https://emailregex.com/
+- MX Record Lookup: https://www.cloudflare.com/learning/dns/dns-records/dns-mx-record/
+- dnspython Library: https://www.dnspython.org/
+
