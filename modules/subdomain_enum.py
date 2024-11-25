@@ -4,7 +4,7 @@ def run(target):
     print(f"Performing Subdomain Enumeration for: {target}")
 
     try:
-        # Query the SecurityTrails API (free API, requires registration for a key)
+        # Query the SecurityTrails API
         api_key = "CUaGc2Aqwwbv83WscX-PvKRqdwRw1G33"
         headers = {"APIKEY": api_key}
         url = f"https://api.securitytrails.com/v1/domain/{target}/subdomains"
