@@ -1,0 +1,73 @@
+
+
+Website Metadata Scraper Module
+
+Description:
+
+The Website Metadata Scraper module extracts key metadata from websites, such as:
+
+	•	Page title.
+	•	Meta descriptions.
+	•	Keywords.
+	•	HTTP headers.
+
+It helps gather insights into the structure, technologies, and content of a website for reconnaissance or analysis.
+
+Usage:
+
+1.	Run the module:
+Use the following command:
+python osintforge.py -m website_metadata -t <URL>
+
+    - Replace <URL> with the target website.
+
+Example:
+python osintforge.py -m website_metadata -t https://example.com
+
+2.	Expected Output:
+	•	Website Metadata:
+	•	Title: The title of the webpage (e.g., “Example Domain”).
+	•	Description: The meta description content (if available).
+	•	Keywords: Meta keywords (if available).
+	•	HTTP Headers:
+	•	Server type, content type, cache policies, etc.
+Example Output:
+
+Scraping metadata for: https://example.com
+
+Website Metadata:
+
+Title: Example Domain
+Description: This domain is for use in illustrative examples in documents.
+Keywords: example, documentation
+
+HTTP Headers:
+
+Content-Type: text/html; charset=UTF-8
+Server: ECS (nyb/1D0F)
+Cache-Control: max-age=604800
+
+
+
+Common Use Cases:
+
+	•	SEO Analysis:
+	•	Check the meta description and keywords of a website for optimization purposes.
+	•	Web Reconnaissance:
+	•	Analyze headers for technology insights or misconfigurations.
+	•	Competitor Research:
+	•	Evaluate the metadata of competitor websites.
+
+Error Handling:
+	•	If the target website is unreachable or the URL is invalid, you may see an error:
+
+Error fetching website: HTTPSConnectionPool(host='example', port=443): Max retries exceeded with URL: /
+
+	Solution:
+	•	Ensure the URL is correct and accessible.
+	•	Verify your internet connection.
+
+Notes:
+
+	•	Ensure the target website allows scraping and complies with its terms of service.
+	•	The module does not handle JavaScript-heavy websites dynamically.
