@@ -1,10 +1,10 @@
 import argparse
-from modules import dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner
+from modules import dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner, website_metadata
 
 def main():
     parser = argparse.ArgumentParser(description="OSINTForge - Modular OSINT Tool")
-    parser.add_argument('-m', '--module', type=str, required=True, help="Module to run (e.g., dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner)")
-    parser.add_argument('-t', '--target', type=str, required=True, help="Target for the module (e.g., domain, file path, or IP address)")
+    parser.add_argument('-m', '--module', type=str, required=True, help="Module to run (e.g., dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner, website_metadata)")
+    parser.add_argument('-t', '--target', type=str, required=True, help="Target for the module (e.g., domain, file path, or URL)")
     args = parser.parse_args()
 
     if args.module == 'dns_lookup':
@@ -19,6 +19,8 @@ def main():
         subdomain_enum.run(args.target)
     elif args.module == 'port_scanner':
         port_scanner.run(args.target)
+    elif args.module == 'website_metadata':
+        website_metadata.run(args.target)
     else:
         print(f"Module '{args.module}' not found.")
 
