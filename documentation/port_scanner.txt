@@ -1,0 +1,81 @@
+<h1><u>OSINTForge's Port Scanning Tool</u></h1>
+
+
+How It Works
+
+1.	Input:
+	•	The tool accepts an IP address or domain name as the target.
+	•	Example:
+python osintforge.py -m port_scanner -t 8.8.8.8
+
+2.	Processing:
+	•	The module uses Python’s socket library to attempt connections to a list of common ports on the target.
+	•	The connect_ex() method is used to check if a port is open or closed:
+	•	If the connection is successful, the port is marked OPEN.
+	•	If the connection fails, the port is skipped.
+	•	A short timeout (e.g., 1 second) is used to avoid long waits for unresponsive ports.
+3.	Output:
+	•	The module prints a list of open ports and their associated services (e.g., HTTP, HTTPS, SSH).
+	•	Example Output:
+
+Performing Port Scanning for: 8.8.8.8
+
+Port 80 (HTTP): OPEN
+Port 443 (HTTPS): OPEN
+
+4.	Error Handling:
+	•	If the target is unreachable or invalid, the module outputs an appropriate error message.
+
+Steps to Use
+
+1.	Run the Tool:
+	•	Example:
+python osintforge.py -m port_scanner -t example.com
+
+
+2.	Output Example:
+
+Performing Port Scanning for: example.com
+
+Port 80 (HTTP): OPEN
+Port 443 (HTTPS): OPEN
+
+
+3.	For Invalid Targets:
+	•	Example:
+python osintforge.py -m port_scanner -t invalid_domain
+
+	•	Expected Output:
+Error during port scanning: [Errno -2] Name or service not known
+
+Features
+
+1.	Common Ports Scanned:
+	•	Scans a predefined list of common ports:
+	•	Example: 21 (FTP), 22 (SSH), 80 (HTTP), 443 (HTTPS), etc.
+2.	Fast Execution:
+	•	Uses a 1-second timeout to quickly determine if ports are open or closed.
+3.	Service Mapping:
+	•	Associates ports with common services (e.g., HTTP, SSH) for better understanding.
+4.	Error Messages:
+	•	Displays meaningful error messages for invalid inputs or network issues.
+
+Common Use Cases
+
+1.	Network Reconnaissance:
+	•	Identify open ports on a target to assess its attack surface.
+2.	Vulnerability Assessment:
+	•	Use the list of open ports to determine potential vulnerabilities (e.g., outdated services on open ports).
+3.	System Administration:
+	•	Verify which ports are open on your own infrastructure for compliance or troubleshooting.
+
+Limitations
+
+1.	No Banner Grabbing:
+	•	The current implementation doesn’t retrieve detailed information about the services running on open ports.
+	•	Enhancement Idea: Add banner grabbing to display version details of services.
+2.	Static Port List:
+	•	Only scans predefined common ports.
+	•	Enhancement Idea: Allow users to specify custom port ranges.
+3.	Basic Service Mapping:
+	•	Services are mapped based on well-known ports, which may not always reflect the actual service.
