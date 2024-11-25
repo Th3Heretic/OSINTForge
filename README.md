@@ -14,11 +14,12 @@ OSINTForge/
 ├── modules/
 │   ├── __init__.py          # To mark this as a package
 │   ├── dns_lookup.py        # First module
+│   ├── email_validation.py  # Eighth module
 │   ├── metadata_extraction.py # Second module
 │   ├── port_scanner.py      # Sixth module
 │   ├── subdomain_enum.py    # Fifth module
 │   ├── ip_geolocation.py    # Third module
-│   ├── website_metadata.py
+│   ├── website_metadata.py  # Seventh module
 │   └── whois_lookup.py      # Fourth module
 ├── references.txt           # Sources and methodology documentation
 ├── osintforge.py            # Main CLI script
@@ -74,3 +75,8 @@ _python osintforge.py -m port_scanner -t 8.8.8.8_
 
 To use the website_metadata tool:
 python osintforge.py -m website_metadata -t example.com
+
+    -t specifies a domain name
+
+To use the email_validation tool:
+python osintforge.py -m email_validation -t email@example.com
