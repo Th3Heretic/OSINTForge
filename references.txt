@@ -20,3 +20,7 @@
 - SecurityTrails API: https://securitytrails.com/corp/api
 - Subdomain Enumeration Overview: https://owasp.org/www-community/Subdomain_Enumeration
 
+# Port Scanning
+- Python socket library: https://docs.python.org/3/library/socket.html
+- Common Ports List: https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
+
