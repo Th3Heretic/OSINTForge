@@ -22,7 +22,7 @@ OSINT Modules to add:
 2.	Email Address Validation:
 	•	Verify the validity and deliverability of an email address.
 	•	Target: Email addresses (e.g., test@example.com).
-3.	Port Scanning:
+3.	DONE - Port Scanning:
 	•	Perform basic port scans on an IP or domain using socket or nmap.
 	•	Target: IP addresses or domain names.
 4.	Social Media Scraper:
@@ -43,7 +43,7 @@ OSINT Modules to add:
 	•	Enumerate directories and files on a web server using a wordlist.
 	•	Tools: Use a dictionary attack with requests.
 	•	Target: Website URLs.
-9.  Website Technology Scanner:
+9.  DONE - Website Technology Scanner:
 	•	Identify technologies and frameworks used on a website (e.g., CMS, JavaScript libraries).
 	•	Tools: Wappalyzer API or manual HTTP header analysis.
 	•	Target: Website URLs.
