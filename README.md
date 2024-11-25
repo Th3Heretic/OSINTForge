@@ -5,6 +5,7 @@ OSINTForge/
 ├── documentation            # Filled with usage documentation for each module 
 │   ├── dns_lookup.txt
 │   ├── metadata_extraction.txt
+│   ├── port_scanner.txt
 │   ├── OSINTForge.txt
 │   ├── subdomain_enum.txt
 │   ├── ip_geolocation.txt
@@ -13,6 +14,7 @@ OSINTForge/
 │   ├── __init__.py          # To mark this as a package
 │   ├── dns_lookup.py        # First module
 │   ├── metadata_extraction.py # Second module
+│   ├── port_scanner.py      # Sixth module
 │   ├── subdomain_enum.py    # Fifth module
 │   ├── ip_geolocation.py    # Third module
 │   └── whois_lookup.py      # Fourth module
@@ -62,3 +64,9 @@ To use the subdomain_enum tool:
 _python osintforge.py -m subdomain_enum -t example.com_
 
     -t specifies a target domain name
+
+To use the port_scanner tool:
+_python osintforge.py -m port_scanner -t 8.8.8.8_
+
+    -t specifies a target IP to audit for open ports
+
