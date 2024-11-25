@@ -24,3 +24,7 @@
 - Python socket library: https://docs.python.org/3/library/socket.html
 - Common Ports List: https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
 
+# Website Metadata Scraper
+- BeautifulSoup Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+- HTTP Headers Overview: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers
+
