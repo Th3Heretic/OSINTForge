@@ -1,0 +1,73 @@
+<h1><u>OSINTForge's Email Validation Tool</u></h1>
+
+Email Address Validation Module
+
+Description:
+
+The Email Address Validation module verifies whether an email address is correctly formatted and potentially deliverable. It performs two key checks:
+
+	1.	Syntax Validation: Ensures the email address is in a valid format.
+	2.	Domain Validation: Confirms the email domain has valid MX records, indicating it can receive emails.
+
+Usage:
+
+	1.	Run the Module:
+Use the following command:
+
+python osintforge.py -m email_validation -t <email_address>
+
+Replace <email_address> with the email you want to validate.
+Example:
+
+python osintforge.py -m email_validation -t test@example.com
+
+
+	2.	Expected Output:
+	•	For a valid email address with deliverable domain:
+
+Validating email address: test@example.com
+The domain 'example.com' has valid MX records.
+Email address appears deliverable.
+
+
+	•	For an invalid email format:
+
+Validating email address: invalid_email
+Error: Invalid email format.
+
+
+	•	For a non-deliverable email:
+
+Validating email address: fake@example.com
+The domain 'example.com' does not have valid MX records.
+Email address is not deliverable.
+
+
+
+Common Use Cases:
+
+	1.	Investigating Suspicious Emails:
+	•	Determine if an email address is legitimate or potentially fake.
+	2.	Contact Verification:
+	•	Check if a contact’s email address is active and deliverable.
+	3.	Pre-Sending Validation:
+	•	Validate email addresses before using them in campaigns or outreach efforts.
+
+Error Handling:
+
+	•	If the domain does not exist or has no DNS records:
+
+The domain 'nonexistent.com' does not have valid MX records.
+Email address is not deliverable.
+
+
+	•	For network issues or timeouts:
+
+Error during email validation: [Error details]
+
+
+
+Notes:
+
+	•	This module performs DNS-based checks only; it does not send emails.
+	•	Ensure you have a stable internet connection for accurate DNS resolution.
