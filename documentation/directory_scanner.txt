@@ -1,6 +1,5 @@
 <h1><u>OSINTForge's Hidden Directory Scanning Tool</u></h1>
 
-Directory Scanner Module
 
 Description:
 
@@ -68,7 +67,7 @@ Notes:
 	•	Ensure you have permission to scan the target website and comply with its terms of service.
 	•	The included wordlist is limited to common directory names but can be expanded for more exhaustive scanning.
 
-Enhancements for Future Use:
+Enhancements for consideration:
 
 	•	Allow users to specify a custom wordlist.
 	•	Add support for multithreading to speed up scans.
