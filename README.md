@@ -7,12 +7,23 @@ OSINTForge/
 │   ├── dns_lookup.txt
 │   ├── metadata_extraction.txt
 │   ├── port_scanner.txt
+│   ├── reverse_image_search.txt
 │   ├── OSINTForge.txt
 │   ├── subdomain_enum.txt
 │   ├── ip_geolocation.txt
 │   ├── website_metadata.txt
 │   └── whois_lookup.txt
 ├── modules/
+│   ├── mrisa/
+│   │   ├── .github/
+│   │   ├── examples/
+│   │   ├── logo/
+│   │   ├── src/
+│   │   ├── Dockerfile
+│   │   ├── LICENSE
+│   │   ├── Procfile
+│   │   ├── README.md
+│   │   └── requirements.txt
 │   ├── __init__.py          # To mark this as a package
 │   ├── directory_scanner.py # Ninth module
 │   ├── dns_lookup.py        # First module
@@ -33,7 +44,7 @@ Installing the dependencies:
 - using the terminal navigate to the project folder
 - to check that the requirements.txt is present, run: 
 >ls 
-- Once you have comfirmed it's presence in the cwd run:
+- Once you have confirmed its presence in the cwd run:
 >pip install -r requirements.txt
 
 
@@ -47,7 +58,7 @@ note: The target should be a domain name, not a full URL.
 
 
 To use the metadata_extraction tool:
-_python osintforge.py -m metadata_extraction -t absolute/path/to/image.jpg_
+_python osintforge.py -m metadata_extraction -t /absolute/path/to/image.jpg_
 
     -m once again specifies the module
     -t is specifying the target image filepath
@@ -90,3 +101,14 @@ To use the directory_scanner tool:
 _python osintforge.py -m directory_scanner -t https://example.com_
 
     -t specifies a URL to inspect
+
+To use the reverse_image_search tool:
+- First start the MRISA API on your local machine:
+_python modules/mrisa/src/server.py_
+- For a local file:
+_python osintforge.py -m reverse_image_search -t /absolute/path/to/image.jpg_
+- For an online image:
+_python osintforge.py -m reverse_image_search -t https://example.com/image.jpg_
+
+    -t specifies either the absolute file path for images stored on the host machine
+    or is used to specify a URL of an online hosted image
