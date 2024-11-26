@@ -1,0 +1,75 @@
+<h1><u>OSINTForge's Hidden Directory Scanning Tool</u></h1>
+
+Directory Scanner Module
+
+Description:
+
+The Directory Scanner module attempts to find hidden or unlisted directories on a target website by brute-forcing paths from a predefined wordlist. It provides the HTTP status code for each discovered directory, helping identify accessible resources or misconfigured endpoints.
+
+Usage:
+
+1.	Run the Module:
+Use the following command:
+
+python osintforge.py -m directory_scanner -t <target_url>
+
+Replace <target_url> with the URL of the target website.
+Example:
+
+python osintforge.py -m directory_scanner -t https://example.com
+
+
+2.	Expected Output:
+The module will list each scanned directory along with its HTTP status code and status description.
+Example Output:
+
+Scanning directories on: https://example.com/
+
+https://example.com/admin/ - 403 Forbidden
+https://example.com/login/ - 200 OK
+Response Content (first 200 chars of body text):
+"Welcome to the Login Page
+Please enter your credentials..."
+
+https://example.com/dashboard/ - 404 Not Found
+https://example.com/config/ - 403 Forbidden
+https://example.com/test/ - 200 OK
+Response body Content (first 200 chars of body text):
+"Skip to main contentServer Error 500This system
+is currently offline for maintenance.Please try later..."
+
+
+
+Common Use Cases:
+
+1.	Identify Hidden Resources:
+	•	Find unlisted directories that may contain sensitive information (e.g., /admin/, /backup/).
+2.	Test Web Security:
+	•	Discover misconfigured endpoints or directories with improper access controls.
+3.	Reconnaissance:
+	•	Map the structure of a target web server as part of an OSINT or penetration testing engagement.
+
+Error Handling:
+
+	•	Connection Errors:
+
+Error accessing https://example.com/admin/: Connection error. Is the domain correct?
+
+	•	Solution: Verify the target URL and your internet connection.
+
+	•	HTTP 404 Responses:
+
+https://example.com/test/ - 404 Not Found
+
+	•	Indicates that the requested directory does not exist on the server.
+
+Notes:
+
+	•	Ensure you have permission to scan the target website and comply with its terms of service.
+	•	The included wordlist is limited to common directory names but can be expanded for more exhaustive scanning.
+
+Enhancements for Future Use:
+
+	•	Allow users to specify a custom wordlist.
+	•	Add support for multithreading to speed up scans.
+	•	Optionally save results to a file for later analysis.
