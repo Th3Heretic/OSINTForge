@@ -7,6 +7,7 @@ OSINTForge/
 │   ├── dns_lookup.txt
 │   ├── metadata_extraction.txt
 │   ├── port_scanner.txt
+│   ├── reverse_dns.txt
 │   ├── ssl_certificate.txt
 │   ├── reverse_image_search.txt
 │   ├── OSINTForge.txt
@@ -21,6 +22,7 @@ OSINTForge/
 │   ├── email_validation.py  # Eighth module
 │   ├── metadata_extraction.py # Second module
 │   ├── port_scanner.py      # Sixth module
+│   ├── reverse_dns.py       # Eleventh module
 │   ├── ssl_certificate.py   # Tenth module
 │   ├── subdomain_enum.py    # Fifth module
 │   ├── ip_geolocation.py    # Third module
@@ -98,3 +100,6 @@ To use the ssl_certificate tool:
 _python osintforge.py -m ssl_certificate -t example.com_
 
     -t specifies the target URL or IP
+
+To use the reverse_dns tool:
+python osintforge.py -m reverse_dns -t 8.8.8.8
