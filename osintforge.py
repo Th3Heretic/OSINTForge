@@ -1,5 +1,5 @@
 import argparse
-from modules import dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner, website_metadata, email_validation, directory_scanner
+from modules import dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner, website_metadata, email_validation, directory_scanner, ssl_certificate
 
 def main():
     parser = argparse.ArgumentParser(description="OSINTForge - Modular OSINT Tool")
@@ -25,6 +25,8 @@ def main():
         email_validation.run(args.target)
     elif args.module == 'directory_scanner':
         directory_scanner.run(args.target)
+    elif args.module == 'ssl_certificate':
+        ssl_certificate.run(args.target)
     else:
         print(f"Module '{args.module}' not found.")
 
