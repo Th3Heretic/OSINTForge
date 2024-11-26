@@ -1,0 +1,71 @@
+Usage Documentation for SSL Certificate Details Module
+
+SSL Certificate Module
+
+This module retrieves SSL certificate details for a given domain or IP address. It extracts and displays critical information about the certificate, such as the issuer, validity period, subject details, and cryptographic fingerprints.
+
+How to Use:
+
+Run the SSL certificate module with the following syntax:
+
+python osintforge.py -m ssl_certificate -t <target_domain_or_ip>
+
+Parameters
+
+	•	-m ssl_certificate: Specifies the module to run.
+	•	-t <target_domain_or_ip>: The domain or IP address whose SSL certificate details you want to retrieve.
+
+Examples
+
+Retrieve Certificate Details for a Domain
+
+python osintforge.py -m ssl_certificate -t example.com
+
+Sample Output:
+
+Retrieving SSL certificate details for: example.com
+
+SSL Certificate Details:
+Issuer:
+    commonName: DigiCert TLS RSA SHA256 2020 CA1
+    organizationName: DigiCert Inc
+    countryName: US
+Subject:
+    commonName: example.com
+    organizationName: Example Organization
+Valid from: 2024-01-01 00:00:00
+Valid to: 2025-01-01 23:59:59
+Version: 3
+Serial number: 123456789ABCDEF
+Fingerprint sha256: A1:B2:C3:...
+Fingerprint md5: 01:23:45:...
+
+Output Explanation
+
+The module provides the following SSL certificate details:
+
+Field,   Description
+Issuer,  Information about the Certificate Authority (CA) that issued the certificate.
+Subject, Details about the entity the certificate is issued to (e.g. domain or organization).
+Valid From,  The start date of the certificate’s validity period.
+Valid To,    The expiration date of the certificate.
+Version, The certificate version (e.g. Version 3).
+Serial Number,   A unique identifier for the certificate.
+SHA256 Fingerprint,  The cryptographic fingerprint of the certificate using the SHA-256 algorithm.
+MD5 Fingerprint, The cryptographic fingerprint of the certificate using the MD5 algorithm.
+
+Notes
+
+	1.	Supported Targets:
+	•	The target can be a domain name (e.g., example.com) or an IP address (e.g., 192.168.1.1).
+	•	Ensure the target supports SSL/TLS (port 443 by default).
+	2.	Port Configuration:
+	•	The module defaults to port 443. If the target uses a custom port for SSL, this module does not currently support specifying it.
+	3.	Error Handling:
+	•	If the module cannot retrieve the certificate, it will display an error message.
+
+Future Enhancements
+
+	•	Add support for custom ports (e.g., -p <port>).
+	•	Validate if the certificate is expired or near expiration.
+	•	Save the output to a file in JSON or text format.
