@@ -7,6 +7,7 @@ OSINTForge/
 │   ├── dns_lookup.txt
 │   ├── metadata_extraction.txt
 │   ├── port_scanner.txt
+│   ├── ssl_certificate.txt
 │   ├── reverse_image_search.txt
 │   ├── OSINTForge.txt
 │   ├── subdomain_enum.txt
@@ -20,6 +21,7 @@ OSINTForge/
 │   ├── email_validation.py  # Eighth module
 │   ├── metadata_extraction.py # Second module
 │   ├── port_scanner.py      # Sixth module
+│   ├── ssl_certificate.py   # Tenth module
 │   ├── subdomain_enum.py    # Fifth module
 │   ├── ip_geolocation.py    # Third module
 │   ├── website_metadata.py  # Seventh module
@@ -92,3 +94,7 @@ _python osintforge.py -m directory_scanner -t https://example.com_
 
     -t specifies a URL to inspect
 
+To use the ssl_certificate tool:
+_python osintforge.py -m ssl_certificate -t example.com_
+
+    -t specifies the target URL or IP
