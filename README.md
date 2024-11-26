@@ -14,16 +14,6 @@ OSINTForge/
 │   ├── website_metadata.txt
 │   └── whois_lookup.txt
 ├── modules/
-│   ├── mrisa/
-│   │   ├── .github/
-│   │   ├── examples/
-│   │   ├── logo/
-│   │   ├── src/
-│   │   ├── Dockerfile
-│   │   ├── LICENSE
-│   │   ├── Procfile
-│   │   ├── README.md
-│   │   └── requirements.txt
 │   ├── __init__.py          # To mark this as a package
 │   ├── directory_scanner.py # Ninth module
 │   ├── dns_lookup.py        # First module
@@ -102,13 +92,3 @@ _python osintforge.py -m directory_scanner -t https://example.com_
 
     -t specifies a URL to inspect
 
-To use the reverse_image_search tool:
-- First start the MRISA API on your local machine:
-_python modules/mrisa/src/server.py_
-- For a local file:
-_python osintforge.py -m reverse_image_search -t /absolute/path/to/image.jpg_
-- For an online image:
-_python osintforge.py -m reverse_image_search -t https://example.com/image.jpg_
-
-    -t specifies either the absolute file path for images stored on the host machine
-    or is used to specify a URL of an online hosted image
