@@ -1,0 +1,54 @@
+<h1><u>OSINTForge's Reverse DNS Lookup Tool</u></h1>
+
+
+This module performs a reverse DNS lookup for a given IP address to retrieve the associated hostname and related IPs.
+
+How it works:
+
+Run the Reverse DNS Lookup module with:
+python osintforge.py -m reverse_dns -t <target_ip>
+
+Parameters
+	•	-m reverse_dns: Specifies the module to run.
+	•	-t <target_ip>: The IP address to perform the reverse lookup on.
+
+Examples
+
+Reverse DNS Lookup for an IP Address
+python osintforge.py -m reverse_dns -t 8.8.8.8
+
+Sample Output:
+Performing reverse DNS lookup for: 8.8.8.8
+
+Reverse DNS Lookup Results:
+IP Address: 8.8.8.8
+Hostname: dns.google
+Associated IPs: 8.8.8.8
+
+Error Handling
+
+If the lookup fails, the module will return an error message:
+Performing reverse DNS lookup for: 192.168.0.1
+
+Error: Reverse DNS lookup failed: [Errno 1] Unknown host
+
+Notes
+
+1.	Supported Targets:
+	•	The target must be a valid IP address.
+	•	Private or non-routable IPs (e.g., 192.168.x.x, 10.x.x.x) may not resolve to a hostname.
+2.	Use Cases:
+	•	Identifying the hostname associated with an IP address.
+	•	Verifying the domain of a public-facing server.
+3.	Limitations:
+	•	Some IPs may not have PTR records, resulting in an “Unknown host” error.
+	•	IPv6 support is dependent on the system’s DNS configuration.
+
+Future Enhancements
+
+1.	Batch Mode:
+	•	Allow multiple IPs to be processed in a single run.
+2.	Export Results:
+	•	Save lookup results to a file (e.g., JSON, CSV).
+3.	IPv6 Compatibility:
+	•	Extend functionality to support IPv6 addresses.
