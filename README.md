@@ -3,6 +3,7 @@
 A brief rundown of the project structure:
 OSINTForge/
 ├── documentation            # Filled with usage documentation for each module 
+│   ├── directory_scanner.txt
 │   ├── dns_lookup.txt
 │   ├── metadata_extraction.txt
 │   ├── port_scanner.txt
@@ -13,6 +14,7 @@ OSINTForge/
 │   └── whois_lookup.txt
 ├── modules/
 │   ├── __init__.py          # To mark this as a package
+│   ├── directory_scanner.py # Ninth module
 │   ├── dns_lookup.py        # First module
 │   ├── email_validation.py  # Eighth module
 │   ├── metadata_extraction.py # Second module
@@ -29,8 +31,9 @@ OSINTForge/
 
 Installing the dependencies:
 - using the terminal navigate to the project folder
-- run >ls to check that the requirements.txt is present
-- run:
+- to check that the requirements.txt is present, run: 
+>ls 
+- Once you have comfirmed it's presence in the cwd run:
 >pip install -r requirements.txt
 
 
@@ -74,9 +77,16 @@ _python osintforge.py -m port_scanner -t 8.8.8.8_
     -t specifies a target IP to audit for open ports
 
 To use the website_metadata tool:
-python osintforge.py -m website_metadata -t example.com
+_python osintforge.py -m website_metadata -t example.com_
 
     -t specifies a domain name
 
 To use the email_validation tool:
-python osintforge.py -m email_validation -t email@example.com
+_python osintforge.py -m email_validation -t email@example.com_
+
+    -t specifies an email address
+
+To use the directory_scanner tool:
+_python osintforge.py -m directory_scanner -t https://example.com_
+
+    -t specifies a URL to inspect
