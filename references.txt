@@ -41,3 +41,8 @@
 - Python `ssl` Module Documentation: https://docs.python.org/3/library/ssl.html
 - Python `socket` Module Documentation: https://docs.python.org/3/library/socket.html
 - Certificate Parsing Best Practices: https://www.digicert.com/kb/ssl-certificates-introduction.htm
+
+# Reverse DNS Lookup Module
+- Python `socket` Module Documentation: https://docs.python.org/3/library/socket.html#socket.gethostbyaddr
+- Reverse DNS Lookup Basics: https://en.wikipedia.org/wiki/Reverse_DNS_lookup
+- DNS PTR Record Explanation: https://www.cloudflare.com/learning/dns/dns-records/dns-ptr-record/
