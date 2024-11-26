@@ -37,3 +37,7 @@
 - Common Directory Wordlists: https://github.com/danielmiessler/SecLists
 - HTTP Status Codes: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
+# SSL Certificate Details Module
+- Python `ssl` Module Documentation: https://docs.python.org/3/library/ssl.html
+- Python `socket` Module Documentation: https://docs.python.org/3/library/socket.html
+- Certificate Parsing Best Practices: https://www.digicert.com/kb/ssl-certificates-introduction.htm
