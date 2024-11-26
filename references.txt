@@ -33,3 +33,7 @@
 - MX Record Lookup: https://www.cloudflare.com/learning/dns/dns-records/dns-mx-record/
 - dnspython Library: https://www.dnspython.org/
 
+# Directory Scanner
+- Common Directory Wordlists: https://github.com/danielmiessler/SecLists
+- HTTP Status Codes: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
