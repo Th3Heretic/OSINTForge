@@ -19,7 +19,7 @@ OSINT Modules to add:
 1.	Reverse Image Search:
 	•	Perform reverse image lookups using Google Images or TinEye.
 	•	Target: Local image files or image URLs.
-2.	Email Address Validation:
+2.	DONE - Email Address Validation:
 	•	Verify the validity and deliverability of an email address.
 	•	Target: Email addresses (e.g., test@example.com).
 3.	DONE - Port Scanning:
@@ -39,7 +39,7 @@ OSINT Modules to add:
 	•	Trace the network path to a target domain or IP.
 	•	Tools: Python’s scapy or external traceroute tools.
 	•	Target: IP addresses or domain names.
-8.  Hidden Directory and File Scanner:
+8.  DONE - Hidden Directory and File Scanner:
 	•	Enumerate directories and files on a web server using a wordlist.
 	•	Tools: Use a dictionary attack with requests.
 	•	Target: Website URLs.
