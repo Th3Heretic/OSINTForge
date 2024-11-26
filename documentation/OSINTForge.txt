@@ -16,7 +16,7 @@ can be easily extended with new features to adapt to the ever-changing landscape
 
 OSINT Modules to add:
 
-1.	Reverse Image Search:
+1.	Reverse Image Search: - (Back-Pocketed for another time to be turned into a standalone program)
 	•	Perform reverse image lookups using Google Images or TinEye.
 	•	Target: Local image files or image URLs.
 2.	DONE - Email Address Validation:
@@ -28,7 +28,7 @@ OSINT Modules to add:
 4.	Social Media Scraper:
 	•	Scrape public data from social media profiles (e.g., Twitter, Instagram).
 	•	Target: Social media profile URLs.
-5.  SSL Certificate Details:
+5.  DONE - SSL Certificate Details:
 	•	Extract SSL certificate information, including issuer, validity, and fingerprints.
 	•	Use: Python’s ssl module or external tools like OpenSSL.
 	•	Target: Domain names or IP addresses.
