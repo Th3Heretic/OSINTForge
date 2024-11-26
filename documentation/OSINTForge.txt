@@ -32,7 +32,7 @@ OSINT Modules to add:
 	•	Extract SSL certificate information, including issuer, validity, and fingerprints.
 	•	Use: Python’s ssl module or external tools like OpenSSL.
 	•	Target: Domain names or IP addresses.
-6.  Reverse DNS Lookup:
+6.  DONE - Reverse DNS Lookup:
 	•	Perform reverse lookups to map IP addresses back to domain names.
 	•	Use: Python’s socket.gethostbyaddr().
 7.  Traceroute:
