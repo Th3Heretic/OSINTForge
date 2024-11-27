@@ -1,0 +1,43 @@
+<h1><u>OSINTForge's Traceroute Tool</u></h1>
+
+Trace the route that packets take to reach the specified domain or IP address.
+
+How to use:
+python osintforge.py -m traceroute -t <target_domain_or_ip>
+
+Examples:
+1.	Traceroute to a Domain
+python osintforge.py -m traceroute -t example.com
+
+Output:
+Performing traceroute for: example.com
+
+Traceroute Results:
+traceroute to example.com (93.184.216.34), 30 hops max, 60 byte packets
+1  192.168.0.1 (192.168.0.1)  1.219 ms  1.223 ms  1.229 ms
+2  10.10.10.1 (10.10.10.1)  2.301 ms  2.305 ms  2.310 ms
+3  example.com (93.184.216.34)  25.332 ms  25.331 ms  25.329 ms
+
+
+2.	Traceroute to an IP Address
+python osintforge.py -m traceroute -t 8.8.8.8
+
+Error Handling:
+
+If the traceroute fails, the module displays an error message:
+Performing traceroute for: invalid.target
+
+Error: Name or service not known
+
+Requirements:
+1.	Platform-Specific Tools:
+	•	Ensure traceroute is installed on Linux/macOS.
+	•	Use tracert on Windows (default).
+2.	Permissions:
+	•	traceroute may require elevated privileges (root) on some systems. Ensure you have proper access.
+
+Future Enhancements:
+1.	Save Output:
+	•	Export traceroute results to a file.
+2.	Visualization:
+	•	Represent the traceroute as a graphical network path.
