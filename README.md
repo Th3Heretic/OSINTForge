@@ -103,9 +103,16 @@ _python osintforge.py -m ssl_certificate -t example.com_
     -t specifies the target URL or IP
 
 To use the reverse_dns tool:
-python osintforge.py -m reverse_dns -t 8.8.8.8
+_python osintforge.py -m reverse_dns -t 8.8.8.8_
 
     -t specifies the IP assigned to a domain
 
 To use the traceroute tool:
-python osintforge.py -m traceroute -t example.com
+_python osintforge.py -m traceroute -t example.com_
+
+    -t specifies a target URL
+
+To use the username_enum tool:
+_python osintforge.py -m username_enum -t <username>_
+
+	-t specifies the username to search for
