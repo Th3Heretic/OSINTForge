@@ -25,6 +25,7 @@ OSINTForge/
 │   ├── reverse_dns.py       # Eleventh module
 │   ├── ssl_certificate.py   # Tenth module
 │   ├── subdomain_enum.py    # Fifth module
+│   ├── traceroute.py        # Twelfth module
 │   ├── ip_geolocation.py    # Third module
 │   ├── website_metadata.py  # Seventh module
 │   └── whois_lookup.py      # Fourth module
@@ -103,3 +104,8 @@ _python osintforge.py -m ssl_certificate -t example.com_
 
 To use the reverse_dns tool:
 python osintforge.py -m reverse_dns -t 8.8.8.8
+
+    -t specifies the IP assigned to a domain
+
+To use the traceroute tool:
+python osintforge.py -m traceroute -t example.com
