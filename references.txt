@@ -52,3 +52,12 @@
 - Python `platform` Module Documentation: https://docs.python.org/3/library/platform.html
 - Traceroute Overview: https://en.wikipedia.org/wiki/Traceroute
 - How Traceroute Works: https://www.cloudflare.com/learning/network-layer/what-is-traceroute/
+
+# Username Enumeration Module
+- Python `requests` Module Documentation: https://docs.python-requests.org/en/latest/
+- BeautifulSoup Documentation (bs4): https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+- Concurrent Futures ThreadPoolExecutor: https://docs.python.org/3/library/concurrent.futures.html
+- Handling Rate Limiting in HTTP: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429
+- SSL/TLS Basics: https://www.cloudflare.com/en-gb/learning/ssl/what-is-ssl/
+- API Status Codes Reference: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+- User-Agent Best Practices: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent
