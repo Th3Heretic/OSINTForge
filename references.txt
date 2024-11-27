@@ -46,3 +46,9 @@
 - Python `socket` Module Documentation: https://docs.python.org/3/library/socket.html#socket.gethostbyaddr
 - Reverse DNS Lookup Basics: https://en.wikipedia.org/wiki/Reverse_DNS_lookup
 - DNS PTR Record Explanation: https://www.cloudflare.com/learning/dns/dns-records/dns-ptr-record/
+
+# Traceroute Module
+- Python `subprocess` Module Documentation: https://docs.python.org/3/library/subprocess.html
+- Python `platform` Module Documentation: https://docs.python.org/3/library/platform.html
+- Traceroute Overview: https://en.wikipedia.org/wiki/Traceroute
+- How Traceroute Works: https://www.cloudflare.com/learning/network-layer/what-is-traceroute/
