@@ -35,7 +35,7 @@ OSINT Modules to add:
 6.  DONE - Reverse DNS Lookup:
 	•	Perform reverse lookups to map IP addresses back to domain names.
 	•	Use: Python’s socket.gethostbyaddr().
-7.  Traceroute:
+7.  DONE - Traceroute:
 	•	Trace the network path to a target domain or IP.
 	•	Tools: Python’s scapy or external traceroute tools.
 	•	Target: IP addresses or domain names.
