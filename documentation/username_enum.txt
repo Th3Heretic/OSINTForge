@@ -1,0 +1,39 @@
+<h1><u>OSINTForge's Username Enumeration Tool</u></h1>
+
+The Username Enumeration module helps identify accounts associated with a given username across various websites or platforms (e.g., social media, forums). It achieves this by sending HTTP requests to specific endpoints and analyzing responses for matches.
+
+How to use the tool
+
+Run the module with:
+python osintforge.py -m username_enum -t <username>
+
+Parameters
+
+	•	-m username_enum: Specifies the module to run.
+	•	-t <username>: The username to search for.
+
+Examples
+
+Enumerate a Username:
+python osintforge.py -m username_enumeration -t johndoe
+
+Output:
+Checking username: johndoe
+
+Username Enumeration Results:
+[+] Found on GitHub: https://github.com/johndoe
+[-] Not found on Twitter
+[-] Not found on Instagram
+[+] Found on Reddit: https://www.reddit.com/user/johndoe/
+...
+
+Future Enhancements:
+
+1.	Custom Site List:
+	•	Allow users to provide their own list of platforms or endpoints to check.
+2.	Batch Mode:
+	•	Accept a list of usernames to search in one run.
+3.	Export Results:
+	•	Add functionality to save results to a file.
+4.	API Support:
+	•	Use platform APIs (where available) for more robust checks.
