@@ -1,5 +1,5 @@
 import argparse
-from modules import dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner, website_metadata, email_validation, directory_scanner, ssl_certificate, reverse_dns, traceroute
+from modules import dns_lookup, metadata_extraction, ip_geolocation, whois_lookup, subdomain_enum, port_scanner, website_metadata, email_validation, directory_scanner, ssl_certificate, reverse_dns, traceroute, username_enum
 
 def main():
     parser = argparse.ArgumentParser(description="OSINTForge - Modular OSINT Tool")
@@ -31,6 +31,8 @@ def main():
         reverse_dns.run(args.target)
     elif args.module == 'traceroute':
         traceroute.run(args.target)
+    elif args.module == 'username_enum':
+        username_enum.run(args.target)
     else:
         print(f"Module '{args.module}' not found.")
 
