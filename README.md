@@ -1,5 +1,10 @@
 <h1><b><u>OSINTForge Investigation Tool</u></b></h1>
 
+Please note, some of these modules aren't perfect and may not work for whatever reason on your system. Also, this is a 
+passion project so more updates or modules may be released at a later time but don't expect them to be regular. 
+
+Thanks, and I hope you enjoy using this early access OSINT tool :)
+
 A brief rundown of the project structure:
 OSINTForge/
 ├── documentation            # Filled with usage documentation for each module 
