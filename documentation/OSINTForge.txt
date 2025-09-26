@@ -47,7 +47,7 @@ OSINT Modules to add:
 	•	Identify technologies and frameworks used on a website (e.g., CMS, JavaScript libraries).
 	•	Tools: Wappalyzer API or manual HTTP header analysis.
 	•	Target: Website URLs.
-10. Username Enumeration:
+10. DONE - Username Enumeration:
 	•	Check if a username exists on multiple platforms (e.g., Twitter, Reddit, GitHub).
 	•	Tools: Use requests or APIs of social media sites.
 	•	Target: Username string.

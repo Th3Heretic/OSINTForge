@@ -1,3 +1,10 @@
+"""
+reverse_dns.py
+
+Performs a reverse DNS lookup for a given IP address using Python's socket module.
+Intended for use in controlled, ethical environments.
+"""
+
 import socket
 
 
@@ -20,10 +27,12 @@ def run(target):
     result = reverse_dns_lookup(target)
 
     if "error" in result:
-        print(f"Error: {result['error']}")
+        print(f" - Error: {result['error']}")
     else:
         print("\nReverse DNS Lookup Results:")
-        print(f"IP Address: {result['ip_address']}")
-        print(f"Hostname: {result['hostname']}")
+        print(f" - IP Address: {result['ip_address']}")
+        print(f" - Hostname: {result['hostname']}")
         if result["associated_ips"]:
-            print(f"Associated IPs: {', '.join(result['associated_ips'])}")
+            print(f" - Associated IPs: {', '.join(result['associated_ips'])}")
+        else:
+            print(" - Associated IPs: None found")

@@ -1,3 +1,9 @@
+"""
+ssl_certificate.py
+
+Retrieves and parses SSL certificate data from a remote host.
+Intended for ethical use in controlled environments only.
+"""
 import ssl
 import socket
 from datetime import datetime
@@ -44,16 +50,16 @@ def format_nested_dict(data):
 
 def run(target):
     """Retrieve and display SSL certificate details."""
-    print(f"\nRetrieving SSL certificate details for: {target}")
+    print(f"\n - Retrieving SSL certificate details for: {target}")
     cert = get_ssl_certificate(target)
     details = parse_certificate(cert)
 
     if "error" in details:
-        print(f"Error: {details['error']}")
+        print(f" - Error: {details['error']}")
     else:
-        print("\nSSL Certificate Details:")
+        print("\n - SSL Certificate Details:")
         for key, value in details.items():
             if isinstance(value, dict):  # Prettify nested dictionaries
-                print(f"{key.replace('_', ' ').capitalize()}:\n    {format_nested_dict(value)}")
+                print(f" - {key.replace('_', ' ').capitalize()}:\n    {format_nested_dict(value)}")
             else:
-                print(f"{key.replace('_', ' ').capitalize()}: {value}")
+                print(f" - {key.replace('_', ' ').capitalize()}: {value}")

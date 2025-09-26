@@ -1,35 +1,42 @@
+"""
+ip_geolocation.py
+
+Uses the ip-api.com service to determine approximate geolocation information for a given IP address.
+Intended for ethical use in controlled environments only.
+"""
 import requests
 
 def run(target):
-    print(f"Performing IP Geolocation for: {target}")
+    print(f" - Performing IP Geolocation for: {target}")
 
     try:
-        # Validate the IP format
+        # Validate the IP format before proceeding
         if not is_valid_ip(target):
-            print(f"Error: Invalid IP address - {target}")
+            print(f" - Error: Invalid IP address - {target}")
             return
 
-        # Query the ip-api service
-        url = f"http://ip-api.com/json/{target}"
+        # Build the request URL with HTTPS for secure access
+        url = f"https://ip-api.com/json/{target}"
+        # Send GET request to ip-api.com
         response = requests.get(url)
         data = response.json()
 
-        # Check the response status
+        # Check if the API returned a successful status
         if data['status'] == 'fail':
-            print(f"Error: {data['message']}")
+            print(f" - Error: {data['message']}")
             return
 
-        # Display geolocation data
-        print("Geolocation Results:\n")
-        print(f"IP Address: {data['query']}")
-        print(f"Country: {data['country']}")
-        print(f"Region: {data['regionName']}")
-        print(f"City: {data['city']}")
-        print(f"ZIP: {data['zip']}")
-        print(f"ISP: {data['isp']}")
-        print(f"Latitude: {data['lat']}, Longitude: {data['lon']}")
+        # Display geolocation data in a standardized format
+        print(" - Geolocation Results:\n")
+        print(f" - IP Address: {data['query']}")
+        print(f" - Country: {data['country']}")
+        print(f" - Region: {data['regionName']}")
+        print(f" - City: {data['city']}")
+        print(f" - ZIP: {data['zip']}")
+        print(f" - ISP: {data['isp']}")
+        print(f" - Latitude: {data['lat']}, Longitude: {data['lon']}")
     except Exception as e:
-        print(f"Error during IP Geolocation: {e}")
+        print(f" - Error during IP Geolocation: {e}")
 
 
 def is_valid_ip(ip):

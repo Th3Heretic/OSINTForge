@@ -1,13 +1,20 @@
+"""
+email_validation.py
+
+Validates email syntax and checks MX records to determine if an email address is potentially deliverable.
+Intended for ethical use in controlled environments only.
+"""
+
 import re
 import dns.resolver
 
 def run(target):
-    print(f"Validating email address: {target}")
+    print(f" - Validating email address: {target}")
 
     try:
         # Validate email syntax
         if not is_valid_email(target):
-            print("Error: Invalid email format.")
+            print(" - Error: Invalid email format.")
             return
 
         # Extract domain from email
@@ -15,13 +22,13 @@ def run(target):
 
         # Check if domain has MX records
         if has_mx_record(domain):
-            print(f"The domain '{domain}' has valid MX records.")
-            print("Email address appears deliverable.")
+            print(f" - The domain '{domain}' has valid MX records.")
+            print(" - Email address appears deliverable.")
         else:
-            print(f"The domain '{domain}' does not have valid MX records.")
-            print("Email address is not deliverable.")
+            print(f" - The domain '{domain}' does not have valid MX records or could not be verified.")
+            print(" - Email address is likely not deliverable.")
     except Exception as e:
-        print(f"Error during email validation: {e}")
+        print(f" - Error during email validation: {e}")
 
 def is_valid_email(email):
     # Basic regex for validating email format
@@ -33,5 +40,5 @@ def has_mx_record(domain):
     try:
         answers = dns.resolver.resolve(domain, 'MX')
         return len(answers) > 0
-    except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN):
+    except (dns.resolver.NoAnswer, dns.resolver.NXDOMAIN, dns.resolver.NoNameservers):
         return False

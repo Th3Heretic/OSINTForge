@@ -82,6 +82,10 @@ def check_username(username):
         futures = {executor.submit(check_single_site, site, url, username, headers): site for site, url in SITES.items()}
         for future in futures:
             results.append(future.result())
+
+
+
+
     return results
 
 
