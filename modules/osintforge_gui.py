@@ -4,6 +4,12 @@ import csv
 from io import StringIO
 import sys
 
+# Traceroute import
+from traceroute import run as traceroute_run
+
+# WHOIS Lookup import
+from whois_lookup import run as whois_lookup_run
+
 # Import the directory scanner's run function
 from directory_scanner import run as directory_scan_run
 from dns_lookup import run as dns_lookup_run
@@ -13,6 +19,9 @@ from metadata_extraction import run as metadata_extraction_run
 from port_scanner import run as port_scanner_run
 from reverse_dns import run as reverse_dns_run
 from ssl_certificate import run as ssl_certificate_run
+from subdomain_enum import run as subdomain_enum_run
+from username_enum import run as username_enum_run
+from website_metadata import run as website_metadata_run
 
 class OSINTForgeGUI:
     def __init__(self, root):
@@ -65,6 +74,139 @@ class OSINTForgeGUI:
         ssl_button = tk.Button(self.main_frame, text="SSL Certificate", width=30, command=self.show_ssl_certificate)
         ssl_button.pack(pady=10)
 
+        subdomain_button = tk.Button(self.main_frame, text="Subdomain Enumeration", width=30, command=self.show_subdomain_enumeration)
+        subdomain_button.pack(pady=10)
+
+        traceroute_button = tk.Button(self.main_frame, text="Traceroute", width=30, command=self.show_traceroute)
+        traceroute_button.pack(pady=10)
+
+        username_enum_button = tk.Button(self.main_frame, text="Username Enumeration", width=30, command=self.show_username_enum)
+        username_enum_button.pack(pady=10)
+
+        website_meta_button = tk.Button(self.main_frame, text="Website Metadata", width=30, command=self.show_website_metadata)
+        website_meta_button.pack(pady=10)
+
+        whois_button = tk.Button(self.main_frame, text="WHOIS Lookup", width=30, command=self.show_whois_lookup)
+        whois_button.pack(pady=10)
+
+
+    def show_whois_lookup(self):
+        for widget in self.main_frame.winfo_children():
+            widget.destroy()
+
+        input_frame = tk.Frame(self.main_frame)
+        input_frame.pack(pady=10)
+        tk.Label(input_frame, text="Domain or IP:").pack(side=tk.LEFT)
+        self.whois_entry = tk.Entry(input_frame, width=50)
+        self.whois_entry.pack(side=tk.LEFT, padx=5)
+
+        button_frame = tk.Frame(self.main_frame)
+        button_frame.pack()
+        tk.Button(button_frame, text="Run WHOIS Lookup", command=self.run_whois_lookup).pack(side=tk.LEFT, padx=5)
+        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
+
+        self.whois_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+        self.whois_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
+
+    def run_whois_lookup(self):
+        target = self.whois_entry.get().strip()
+        if not target:
+            messagebox.showerror("Error", "Please enter a domain or IP address.")
+            return
+
+        self.whois_output_box.delete("1.0", tk.END)
+        buffer = StringIO()
+        sys.stdout = buffer
+        try:
+            print(whois_lookup_run(target))
+        except Exception as e:
+            print(f"[ERROR] WHOIS Lookup failed: {e}")
+        finally:
+            sys.stdout = sys.__stdout__
+
+        output = buffer.getvalue()
+        self.whois_output_box.insert(tk.END, output)
+
+
+    def show_website_metadata(self):
+        for widget in self.main_frame.winfo_children():
+            widget.destroy()
+
+        input_frame = tk.Frame(self.main_frame)
+        input_frame.pack(pady=10)
+        tk.Label(input_frame, text="Target URL:").pack(side=tk.LEFT)
+        self.website_meta_entry = tk.Entry(input_frame, width=50)
+        self.website_meta_entry.pack(side=tk.LEFT, padx=5)
+
+        button_frame = tk.Frame(self.main_frame)
+        button_frame.pack()
+        tk.Button(button_frame, text="Run Website Metadata", command=self.run_website_metadata).pack(side=tk.LEFT, padx=5)
+        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
+
+        self.website_meta_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+        self.website_meta_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
+
+    def run_website_metadata(self):
+        target = self.website_meta_entry.get().strip()
+        if not target:
+            messagebox.showerror("Error", "Please enter a URL.")
+            return
+
+        self.website_meta_output_box.delete("1.0", tk.END)
+        buffer = StringIO()
+        sys.stdout = buffer
+        try:
+            website_metadata_run(target)
+        except Exception as e:
+            print(f"[ERROR] Website metadata extraction failed: {e}")
+        finally:
+            sys.stdout = sys.__stdout__
+
+        output = buffer.getvalue()
+        self.website_meta_output_box.insert(tk.END, output)
+
+
+    def show_username_enum(self):
+        for widget in self.main_frame.winfo_children():
+            widget.destroy()
+
+        input_frame = tk.Frame(self.main_frame)
+        input_frame.pack(pady=10)
+        tk.Label(input_frame, text="Target Username:").pack(side=tk.LEFT)
+        self.username_entry = tk.Entry(input_frame, width=50)
+        self.username_entry.pack(side=tk.LEFT, padx=5)
+
+        button_frame = tk.Frame(self.main_frame)
+        button_frame.pack()
+        tk.Button(button_frame, text="Run Username Enumeration", command=self.run_username_enum).pack(side=tk.LEFT, padx=5)
+        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
+
+        self.username_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+        self.username_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
+
+    def run_username_enum(self):
+        target = self.username_entry.get().strip()
+        if not target:
+            messagebox.showerror("Error", "Please enter a username.")
+            return
+
+        self.username_output_box.delete("1.0", tk.END)
+        buffer = StringIO()
+        sys.stdout = buffer
+        try:
+            username_enum_run(target)
+        except Exception as e:
+            print(f"[ERROR] Username Enumeration failed: {e}")
+        finally:
+            sys.stdout = sys.__stdout__
+
+        output = buffer.getvalue()
+        self.username_output_box.insert(tk.END, output)
+
+
     def show_directory_scanner(self):
         # Clear main frame
         for widget in self.main_frame.winfo_children():
@@ -84,6 +226,7 @@ class OSINTForgeGUI:
 
         self.output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
 
     def run_directory_scan(self):
         target = self.target_entry.get().strip()
@@ -109,6 +252,7 @@ class OSINTForgeGUI:
                 parts = line.split(" - ")
                 self.scan_results.append(parts)
 
+
     def export_results(self):
         if not self.scan_results:
             messagebox.showinfo("Info", "No scan results to export.")
@@ -127,13 +271,14 @@ class OSINTForgeGUI:
                     writer.writerow(row)
             messagebox.showinfo("Exported", f"Results saved to:\n{file_path}")
 
+
     def show_dns_lookup(self):
         for widget in self.main_frame.winfo_children():
             widget.destroy()
 
         input_frame = tk.Frame(self.main_frame)
         input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target Domain:").pack(side=tk.LEFT)
+        tk.Label(input_frame, text="Target URL:").pack(side=tk.LEFT)
         self.dns_entry = tk.Entry(input_frame, width=50)
         self.dns_entry.pack(side=tk.LEFT, padx=5)
 
@@ -144,6 +289,7 @@ class OSINTForgeGUI:
 
         self.dns_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.dns_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
 
     def run_dns_lookup(self):
         target = self.dns_entry.get().strip()
@@ -159,6 +305,7 @@ class OSINTForgeGUI:
 
         output = buffer.getvalue()
         self.dns_output_box.insert(tk.END, output)
+
 
     def show_email_validation(self):
         for widget in self.main_frame.winfo_children():
@@ -178,6 +325,7 @@ class OSINTForgeGUI:
         self.email_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.email_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
+
     def run_email_validation(self):
         target = self.email_entry.get().strip()
         if not target:
@@ -192,6 +340,7 @@ class OSINTForgeGUI:
 
         output = buffer.getvalue()
         self.email_output_box.insert(tk.END, output)
+
 
     def show_ip_geolocation(self):
         for widget in self.main_frame.winfo_children():
@@ -211,6 +360,7 @@ class OSINTForgeGUI:
         self.ip_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.ip_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
+
     def run_ip_geolocation(self):
         target = self.ip_entry.get().strip()
         if not target:
@@ -225,6 +375,7 @@ class OSINTForgeGUI:
 
         output = buffer.getvalue()
         self.ip_output_box.insert(tk.END, output)
+
 
     def show_metadata_extraction(self):
         for widget in self.main_frame.winfo_children():
@@ -245,11 +396,13 @@ class OSINTForgeGUI:
         self.meta_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.meta_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
+
     def browse_metadata_file(self):
         file_path = filedialog.askopenfilename()
         if file_path:
             self.meta_file_path.delete(0, tk.END)
             self.meta_file_path.insert(0, file_path)
+
 
     def run_metadata_extraction(self):
         path = self.meta_file_path.get().strip()
@@ -266,13 +419,14 @@ class OSINTForgeGUI:
         output = buffer.getvalue()
         self.meta_output_box.insert(tk.END, output)
 
+
     def show_port_scanner(self):
         for widget in self.main_frame.winfo_children():
             widget.destroy()
 
         input_frame = tk.Frame(self.main_frame)
         input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target Host:").pack(side=tk.LEFT)
+        tk.Label(input_frame, text="Target Host IP:").pack(side=tk.LEFT)
         self.port_target_entry = tk.Entry(input_frame, width=50)
         self.port_target_entry.pack(side=tk.LEFT, padx=5)
 
@@ -283,6 +437,7 @@ class OSINTForgeGUI:
 
         self.port_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.port_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
 
     def run_port_scanner(self):
         target = self.port_target_entry.get().strip()
@@ -298,6 +453,7 @@ class OSINTForgeGUI:
 
         output = buffer.getvalue()
         self.port_output_box.insert(tk.END, output)
+
 
     def show_reverse_dns(self):
         for widget in self.main_frame.winfo_children():
@@ -317,6 +473,7 @@ class OSINTForgeGUI:
         self.reverse_dns_output = tk.Text(self.main_frame, wrap=tk.WORD)
         self.reverse_dns_output.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
+
     def run_reverse_dns(self):
         target = self.reverse_dns_entry.get().strip()
         if not target:
@@ -332,13 +489,14 @@ class OSINTForgeGUI:
         output = buffer.getvalue()
         self.reverse_dns_output.insert(tk.END, output)
 
+
     def show_ssl_certificate(self):
         for widget in self.main_frame.winfo_children():
             widget.destroy()
 
         input_frame = tk.Frame(self.main_frame)
         input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target Domain:").pack(side=tk.LEFT)
+        tk.Label(input_frame, text="Target URL:").pack(side=tk.LEFT)
         self.ssl_entry = tk.Entry(input_frame, width=50)
         self.ssl_entry.pack(side=tk.LEFT, padx=5)
 
@@ -349,6 +507,7 @@ class OSINTForgeGUI:
 
         self.ssl_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.ssl_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
 
     def run_ssl_certificate(self):
         target = self.ssl_entry.get().strip()
@@ -365,7 +524,85 @@ class OSINTForgeGUI:
         output = buffer.getvalue()
         self.ssl_output_box.insert(tk.END, output)
 
+
+    def show_subdomain_enumeration(self):
+        for widget in self.main_frame.winfo_children():
+            widget.destroy()
+
+        input_frame = tk.Frame(self.main_frame)
+        input_frame.pack(pady=10)
+        tk.Label(input_frame, text="Target Domain:").pack(side=tk.LEFT)
+        self.subdomain_entry = tk.Entry(input_frame, width=50)
+        self.subdomain_entry.pack(side=tk.LEFT, padx=5)
+
+        button_frame = tk.Frame(self.main_frame)
+        button_frame.pack()
+        tk.Button(button_frame, text="Run Subdomain Enumeration", command=self.run_subdomain_enum).pack(side=tk.LEFT, padx=5)
+        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
+
+        self.subdomain_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+        self.subdomain_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
+
+    def run_subdomain_enum(self):
+        target = self.subdomain_entry.get().strip()
+        if not target:
+            messagebox.showerror("Error", "Please enter a domain.")
+            return
+
+        self.subdomain_output_box.delete("1.0", tk.END)
+        buffer = StringIO()
+        sys.stdout = buffer
+        subdomain_enum_run(target)
+        sys.stdout = sys.__stdout__
+
+        output = buffer.getvalue()
+        self.subdomain_output_box.insert(tk.END, output)
+
+
+    def show_traceroute(self):
+        for widget in self.main_frame.winfo_children():
+            widget.destroy()
+
+        input_frame = tk.Frame(self.main_frame)
+        input_frame.pack(pady=10)
+        tk.Label(input_frame, text="Target Host/IP:").pack(side=tk.LEFT)
+        self.traceroute_entry = tk.Entry(input_frame, width=50)
+        self.traceroute_entry.pack(side=tk.LEFT, padx=5)
+
+        button_frame = tk.Frame(self.main_frame)
+        button_frame.pack()
+        tk.Button(button_frame, text="Run Traceroute", command=self.run_traceroute).pack(side=tk.LEFT, padx=5)
+        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
+
+        self.traceroute_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+        self.traceroute_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
+
+    def run_traceroute(self):
+        target = self.traceroute_entry.get().strip()
+        if not target:
+            messagebox.showerror("Error", "Please enter a target host or IP.")
+            return
+
+        self.traceroute_output_box.delete("1.0", tk.END)
+        buffer = StringIO()
+        sys.stdout = buffer
+        try:
+            traceroute_run(target)
+        except Exception as e:
+            print(f"[ERROR] Traceroute failed: {e}")
+        finally:
+            sys.stdout = sys.__stdout__
+
+        output = buffer.getvalue()
+        self.traceroute_output_box.insert(tk.END, output)
+
+
 if __name__ == "__main__":
-    root = tk.Tk()
-    app = OSINTForgeGUI(root)
-    root.mainloop()
+    try:
+        root = tk.Tk()
+        app = OSINTForgeGUI(root)
+        root.mainloop()
+    except Exception as e:
+        print(f"[FATAL] GUI failed to launch: {e}")
