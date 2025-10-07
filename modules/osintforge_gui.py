@@ -42,52 +42,65 @@ class OSINTForgeGUI:
         self.show_home_screen()
 
     def show_home_screen(self):
-        # Clear main frame
         for widget in self.main_frame.winfo_children():
             widget.destroy()
 
-        intro = tk.Label(self.main_frame, text="Welcome to OSINTForge\nSelect a module to begin", font=("Arial", 14))
-        intro.pack(pady=20)
+        # Scrollable Canvas Setup
+        canvas = tk.Canvas(self.main_frame)
+        scrollbar = tk.Scrollbar(self.main_frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = tk.Frame(canvas)
 
-        # Module buttons
-        scan_button = tk.Button(self.main_frame, text="Directory Scanner", width=30, command=self.show_directory_scanner)
-        scan_button.pack(pady=10)
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(scrollregion=canvas.bbox("all"))
+        )
 
-        dns_button = tk.Button(self.main_frame, text="DNS Lookup", width=30, command=self.show_dns_lookup)
-        dns_button.pack(pady=10)
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
 
-        email_button = tk.Button(self.main_frame, text="Email Validation", width=30, command=self.show_email_validation)
-        email_button.pack(pady=10)
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
 
-        ipgeo_button = tk.Button(self.main_frame, text="IP Geolocation", width=30, command=self.show_ip_geolocation)
-        ipgeo_button.pack(pady=10)
+        # Title
+        intro = tk.Label(scrollable_frame, text="Welcome to OSINTForge\nSelect a module to begin", font=("Arial", 14))
+        intro.grid(row=0, column=0, columnspan=3, pady=20)
 
-        meta_button = tk.Button(self.main_frame, text="Metadata Extraction", width=30, command=self.show_metadata_extraction)
-        meta_button.pack(pady=10)
+        # Optional image
+        try:
+            self.module_icon = tk.PhotoImage(file="media/button_bg.png")
+        except Exception:
+            self.module_icon = None
 
-        port_button = tk.Button(self.main_frame, text="Port Scanner", width=30, command=self.show_port_scanner)
-        port_button.pack(pady=10)
+        # Button Configuration
+        buttons = [
+            ("Directory Scanner", self.show_directory_scanner),
+            ("DNS Lookup", self.show_dns_lookup),
+            ("Email Validation", self.show_email_validation),
+            ("IP Geolocation", self.show_ip_geolocation),
+            ("Metadata Extraction", self.show_metadata_extraction),
+            ("Port Scanner", self.show_port_scanner),
+            ("Reverse DNS", self.show_reverse_dns),
+            ("SSL Certificate", self.show_ssl_certificate),
+            ("Subdomain Enumeration", self.show_subdomain_enumeration),
+            ("Traceroute", self.show_traceroute),
+            ("Username Enumeration", self.show_username_enum),
+            ("Website Metadata", self.show_website_metadata),
+            ("WHOIS Lookup", self.show_whois_lookup),
+        ]
 
-        reverse_dns_button = tk.Button(self.main_frame, text="Reverse DNS", width=30, command=self.show_reverse_dns)
-        reverse_dns_button.pack(pady=10)
-
-        ssl_button = tk.Button(self.main_frame, text="SSL Certificate", width=30, command=self.show_ssl_certificate)
-        ssl_button.pack(pady=10)
-
-        subdomain_button = tk.Button(self.main_frame, text="Subdomain Enumeration", width=30, command=self.show_subdomain_enumeration)
-        subdomain_button.pack(pady=10)
-
-        traceroute_button = tk.Button(self.main_frame, text="Traceroute", width=30, command=self.show_traceroute)
-        traceroute_button.pack(pady=10)
-
-        username_enum_button = tk.Button(self.main_frame, text="Username Enumeration", width=30, command=self.show_username_enum)
-        username_enum_button.pack(pady=10)
-
-        website_meta_button = tk.Button(self.main_frame, text="Website Metadata", width=30, command=self.show_website_metadata)
-        website_meta_button.pack(pady=10)
-
-        whois_button = tk.Button(self.main_frame, text="WHOIS Lookup", width=30, command=self.show_whois_lookup)
-        whois_button.pack(pady=10)
+        for index, (text, command) in enumerate(buttons):
+            row = index // 3 + 1
+            col = index % 3
+            button = tk.Button(
+                scrollable_frame,
+                text=text,
+                width=24,
+                height=4,
+                compound=tk.LEFT,
+                image=self.module_icon,
+                command=command
+            )
+            button.grid(row=row, column=col, padx=10, pady=10)
 
 
     def show_whois_lookup(self):
