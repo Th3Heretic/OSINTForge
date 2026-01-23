@@ -76,7 +76,7 @@ class OSINTForgeGUI:
             ("Directory Scanner", self.show_directory_scanner),
             ("DNS Lookup", self.show_dns_lookup),
             ("Email Validation", self.show_email_validation),
-            ("IP Geolocation", self.show_ip_geolocation),
+            ("IP Geolocation \n (Experimental)", self.show_ip_geolocation),
             ("Metadata Extraction", self.show_metadata_extraction),
             ("Port Scanner", self.show_port_scanner),
             ("Reverse DNS", self.show_reverse_dns),
