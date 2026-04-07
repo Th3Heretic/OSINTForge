@@ -11,16 +11,16 @@ def main():
         dns_lookup.run(args.target)
     elif args.module == 'metadata_extraction':
         metadata_extraction.run(args.target)
-    elif args.module == 'ip_geolocation':
-        ip_geolocation.run(args.target)
+#    elif args.module == 'ip_geolocation':      [DEPRECATED]
+#        ip_geolocation.run(args.target)
     elif args.module == 'whois_lookup':
         whois_lookup.run(args.target)
     elif args.module == 'subdomain_enum':
         subdomain_enum.run(args.target)
     elif args.module == 'port_scanner':
         port_scanner.run(args.target)
-    elif args.module == 'website_metadata':
-        website_metadata.run(args.target)
+#    elif args.module == 'website_metadata':    [DEPRECATED]
+#        website_metadata.run(args.target)
 #    elif args.module == 'email_validation':    [DEPRECATED]
 #        email_validation.run(args.target)
     elif args.module == 'directory_scanner':

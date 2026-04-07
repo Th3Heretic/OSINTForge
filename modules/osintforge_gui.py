@@ -76,7 +76,7 @@ class OSINTForgeGUI:
             ("Directory Scanner", self.show_directory_scanner),
             ("DNS Lookup", self.show_dns_lookup),
 #            ("Email Validation", self.show_email_validation),  [DEPRECATED]
-            ("IP Geolocation \n (Experimental)", self.show_ip_geolocation),
+#            ("IP Geolocation \n (Experimental)", self.show_ip_geolocation),
             ("Metadata Extraction", self.show_metadata_extraction),
             ("Port Scanner", self.show_port_scanner),
             ("Reverse DNS", self.show_reverse_dns),
@@ -84,7 +84,7 @@ class OSINTForgeGUI:
             ("Subdomain Enumeration", self.show_subdomain_enumeration),
             ("Traceroute", self.show_traceroute),
             ("Username Enumeration", self.show_username_enum),
-            ("Website Metadata", self.show_website_metadata),
+#            ("Website Metadata", self.show_website_metadata),
             ("WHOIS Lookup", self.show_whois_lookup),
         ]
 
@@ -142,43 +142,43 @@ class OSINTForgeGUI:
         self.whois_output_box.insert(tk.END, output)
 
 
-    def show_website_metadata(self):
-        for widget in self.main_frame.winfo_children():
-            widget.destroy()
+#    def show_website_metadata(self):
+#        for widget in self.main_frame.winfo_children():
+#            widget.destroy()
 
-        input_frame = tk.Frame(self.main_frame)
-        input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target URL:").pack(side=tk.LEFT)
-        self.website_meta_entry = tk.Entry(input_frame, width=50)
-        self.website_meta_entry.pack(side=tk.LEFT, padx=5)
+#        input_frame = tk.Frame(self.main_frame)
+#        input_frame.pack(pady=10)
+#        tk.Label(input_frame, text="Target URL:").pack(side=tk.LEFT)
+#        self.website_meta_entry = tk.Entry(input_frame, width=50)
+#        self.website_meta_entry.pack(side=tk.LEFT, padx=5)
 
-        button_frame = tk.Frame(self.main_frame)
-        button_frame.pack()
-        tk.Button(button_frame, text="Run Website Metadata", command=self.run_website_metadata).pack(side=tk.LEFT, padx=5)
-        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
+#        button_frame = tk.Frame(self.main_frame)
+#        button_frame.pack()
+#        tk.Button(button_frame, text="Run Website Metadata", command=self.run_website_metadata).pack(side=tk.LEFT, padx=5)
+#        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
 
-        self.website_meta_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
-        self.website_meta_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+#        self.website_meta_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+#        self.website_meta_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
 
-    def run_website_metadata(self):
-        target = self.website_meta_entry.get().strip()
-        if not target:
-            messagebox.showerror("Error", "Please enter a URL.")
-            return
+#    def run_website_metadata(self):
+#        target = self.website_meta_entry.get().strip()
+#        if not target:
+#            messagebox.showerror("Error", "Please enter a URL.")
+#            return
 
-        self.website_meta_output_box.delete("1.0", tk.END)
-        buffer = StringIO()
-        sys.stdout = buffer
-        try:
-            website_metadata_run(target)
-        except Exception as e:
-            print(f"[ERROR] Website metadata extraction failed: {e}")
-        finally:
-            sys.stdout = sys.__stdout__
+#        self.website_meta_output_box.delete("1.0", tk.END)
+#        buffer = StringIO()
+#        sys.stdout = buffer
+#        try:
+#            website_metadata_run(target)
+#        except Exception as e:
+#            print(f"[ERROR] Website metadata extraction failed: {e}")
+#        finally:
+#            sys.stdout = sys.__stdout__
 
-        output = buffer.getvalue()
-        self.website_meta_output_box.insert(tk.END, output)
+#        output = buffer.getvalue()
+#        self.website_meta_output_box.insert(tk.END, output)
 
 
     def show_username_enum(self):
@@ -357,39 +357,39 @@ class OSINTForgeGUI:
 #        self.email_output_box.insert(tk.END, output)
 
 
-    def show_ip_geolocation(self):
-        for widget in self.main_frame.winfo_children():
-            widget.destroy()
+#    def show_ip_geolocation(self):
+#        for widget in self.main_frame.winfo_children():
+#            widget.destroy()
 
-        input_frame = tk.Frame(self.main_frame)
-        input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target IP:").pack(side=tk.LEFT)
-        self.ip_entry = tk.Entry(input_frame, width=50)
-        self.ip_entry.pack(side=tk.LEFT, padx=5)
+#        input_frame = tk.Frame(self.main_frame)
+#        input_frame.pack(pady=10)
+#        tk.Label(input_frame, text="Target IP:").pack(side=tk.LEFT)
+#        self.ip_entry = tk.Entry(input_frame, width=50)
+#        self.ip_entry.pack(side=tk.LEFT, padx=5)
 
-        button_frame = tk.Frame(self.main_frame)
-        button_frame.pack()
-        tk.Button(button_frame, text="Run IP Geolocation", command=self.run_ip_geolocation).pack(side=tk.LEFT, padx=5)
-        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
+#        button_frame = tk.Frame(self.main_frame)
+#        button_frame.pack()
+#        tk.Button(button_frame, text="Run IP Geolocation", command=self.run_ip_geolocation).pack(side=tk.LEFT, padx=5)
+#        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
 
-        self.ip_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
-        self.ip_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+#        self.ip_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+#        self.ip_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
 
-    def run_ip_geolocation(self):
-        target = self.ip_entry.get().strip()
-        if not target:
-            messagebox.showerror("Error", "Please enter an IP address.")
-            return
+#    def run_ip_geolocation(self):
+#        target = self.ip_entry.get().strip()
+#        if not target:
+#            messagebox.showerror("Error", "Please enter an IP address.")
+#            return
 
-        self.ip_output_box.delete("1.0", tk.END)
-        buffer = StringIO()
-        sys.stdout = buffer
-        ip_geolocation_run(target)
-        sys.stdout = sys.__stdout__
+#        self.ip_output_box.delete("1.0", tk.END)
+#        buffer = StringIO()
+#        sys.stdout = buffer
+#        ip_geolocation_run(target)
+#        sys.stdout = sys.__stdout__
 
-        output = buffer.getvalue()
-        self.ip_output_box.insert(tk.END, output)
+#        output = buffer.getvalue()
+#        self.ip_output_box.insert(tk.END, output)
 
 
     def show_metadata_extraction(self):
