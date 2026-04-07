@@ -75,7 +75,7 @@ class OSINTForgeGUI:
         buttons = [
             ("Directory Scanner", self.show_directory_scanner),
             ("DNS Lookup", self.show_dns_lookup),
-            ("Email Validation", self.show_email_validation),
+#            ("Email Validation", self.show_email_validation),  [DEPRECATED]
             ("IP Geolocation \n (Experimental)", self.show_ip_geolocation),
             ("Metadata Extraction", self.show_metadata_extraction),
             ("Port Scanner", self.show_port_scanner),
@@ -320,39 +320,41 @@ class OSINTForgeGUI:
         self.dns_output_box.insert(tk.END, output)
 
 
-    def show_email_validation(self):
-        for widget in self.main_frame.winfo_children():
-            widget.destroy()
+    ### [DEPRECATED] ###
 
-        input_frame = tk.Frame(self.main_frame)
-        input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target Email:").pack(side=tk.LEFT)
-        self.email_entry = tk.Entry(input_frame, width=50)
-        self.email_entry.pack(side=tk.LEFT, padx=5)
+#    def show_email_validation(self):
+#        for widget in self.main_frame.winfo_children():
+#            widget.destroy()
+#
+#        input_frame = tk.Frame(self.main_frame)
+#        input_frame.pack(pady=10)
+#        tk.Label(input_frame, text="Target Email:").pack(side=tk.LEFT)
+#        self.email_entry = tk.Entry(input_frame, width=50)
+#        self.email_entry.pack(side=tk.LEFT, padx=5)
+#
+#        button_frame = tk.Frame(self.main_frame)
+#        button_frame.pack()
+#        tk.Button(button_frame, text="Run Email Validation", command=self.run_email_validation).pack(side=tk.LEFT, padx=5)
+#        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
 
-        button_frame = tk.Frame(self.main_frame)
-        button_frame.pack()
-        tk.Button(button_frame, text="Run Email Validation", command=self.run_email_validation).pack(side=tk.LEFT, padx=5)
-        tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
-
-        self.email_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
-        self.email_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+#        self.email_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
+#        self.email_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
 
-    def run_email_validation(self):
-        target = self.email_entry.get().strip()
-        if not target:
-            messagebox.showerror("Error", "Please enter an email address.")
-            return
+#    def run_email_validation(self):
+#        target = self.email_entry.get().strip()
+#        if not target:
+#            messagebox.showerror("Error", "Please enter an email address.")
+#            return
 
-        self.email_output_box.delete("1.0", tk.END)
-        buffer = StringIO()
-        sys.stdout = buffer
-        email_validation_run(target)
-        sys.stdout = sys.__stdout__
+#        self.email_output_box.delete("1.0", tk.END)
+#        buffer = StringIO()
+#        sys.stdout = buffer
+#        email_validation_run(target)
+#        sys.stdout = sys.__stdout__
 
-        output = buffer.getvalue()
-        self.email_output_box.insert(tk.END, output)
+#        output = buffer.getvalue()
+#        self.email_output_box.insert(tk.END, output)
 
 
     def show_ip_geolocation(self):

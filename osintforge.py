@@ -21,8 +21,8 @@ def main():
         port_scanner.run(args.target)
     elif args.module == 'website_metadata':
         website_metadata.run(args.target)
-    elif args.module == 'email_validation':
-        email_validation.run(args.target)
+#    elif args.module == 'email_validation':    [DEPRECATED]
+#        email_validation.run(args.target)
     elif args.module == 'directory_scanner':
         directory_scanner.run(args.target)
     elif args.module == 'ssl_certificate':
