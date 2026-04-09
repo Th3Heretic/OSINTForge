@@ -36,8 +36,21 @@ def run(target):
         )
 
         # STREAM OUTPUT LINE BY LINE
+        header_printed = False
+
         for line in process.stdout:
-            yield line.strip()
+            stripped = line.strip()
+            yield stripped
+
+            # Detect end of traceroute header
+            if not header_printed and (
+                    "over a maximum of" in stripped.lower() or
+                    "max hops" in stripped.lower()
+            ):
+                yield ""
+                yield "Hop | Response Times (ms) | IP Address"
+                yield "-" * 50
+                header_printed = True
 
         process.wait()
 
