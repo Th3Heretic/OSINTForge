@@ -10,7 +10,7 @@ from traceroute import run as traceroute_run
 # WHOIS Lookup import
 from whois_lookup import run as whois_lookup_run
 
-# Import the directory scanner's run function
+# Import each module's run function
 from directory_scanner import run as directory_scan_run
 from dns_lookup import run as dns_lookup_run
 from email_validation import run as email_validation_run
@@ -22,6 +22,7 @@ from ssl_certificate import run as ssl_certificate_run
 from subdomain_enum import run as subdomain_enum_run
 from username_enum import run as username_enum_run
 from website_metadata import run as website_metadata_run
+import threading
 
 class OSINTForgeGUI:
     def __init__(self, root):
@@ -593,7 +594,6 @@ class OSINTForgeGUI:
         self.traceroute_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.traceroute_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
-
     def run_traceroute(self):
         target = self.traceroute_entry.get().strip()
         if not target:
@@ -601,17 +601,17 @@ class OSINTForgeGUI:
             return
 
         self.traceroute_output_box.delete("1.0", tk.END)
-        buffer = StringIO()
-        sys.stdout = buffer
-        try:
-            traceroute_run(target)
-        except Exception as e:
-            print(f"[ERROR] Traceroute failed: {e}")
-        finally:
-            sys.stdout = sys.__stdout__
 
-        output = buffer.getvalue()
-        self.traceroute_output_box.insert(tk.END, output)
+        def task():
+            try:
+                for line in traceroute_run(target):
+                    self.traceroute_output_box.insert(tk.END, line + "\n")
+                    self.traceroute_output_box.see(tk.END)
+            except Exception as e:
+                self.traceroute_output_box.insert(tk.END, f"[ERROR] {e}\n")
+
+        # Run in background thread (CRITICAL)
+        threading.Thread(target=task, daemon=True).start()
 
 
 if __name__ == "__main__":
