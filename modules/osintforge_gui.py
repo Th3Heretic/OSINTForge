@@ -441,7 +441,7 @@ class OSINTForgeGUI:
 
         input_frame = tk.Frame(self.main_frame)
         input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target Host IP:").pack(side=tk.LEFT)
+        tk.Label(input_frame, text="Target Host IP/Domain:").pack(side=tk.LEFT)
         self.port_target_entry = tk.Entry(input_frame, width=50)
         self.port_target_entry.pack(side=tk.LEFT, padx=5)
 
