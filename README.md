@@ -63,12 +63,12 @@ To use the <b>metadata_extraction</b> tool:
 - m once again specifies the module
 - t is specifying the target image filepath
 
-
+DEPRECATED
 To use the <b>ip_geolocation</b> tool:
->_python osintforge.py -m ip_geolocation -t 0.0.0.0_
+_python osintforge.py -m ip_geolocation -t 0.0.0.0_
 
-- t is used to specify a target IP address
-- can be used in conjuntion with the dns_lookup and subdomain_enum modules
+-t is used to specify a target IP address
+-can be used in conjunction with the dns_lookup and subdomain_enum modules
 
 
 To use the <b>whois_lookup</b> tool:
@@ -87,10 +87,11 @@ To use the <b>port_scanner</b> tool:
 
 - t specifies a target IP to audit for open ports
 
+DEPRECATED
 To use the <b>website_metadata</b> tool:
->_python osintforge.py -m website_metadata -t example.com_
+_python osintforge.py -m website_metadata -t example.com_
 
-- t specifies a domain name
+-t specifies a domain name
 
 DEPRECATED
 To use the email_validation tool:
