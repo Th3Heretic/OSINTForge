@@ -80,7 +80,7 @@ def _scan_single(session, base_url, directory):
     return None
 
 
-def run(target: str, threads: int = 30) -> None:
+def run(target: str, threads: int = 35) -> None:
     print(f" - Scanning directories on: {target}")
 
     wordlist = load_wordlist()
