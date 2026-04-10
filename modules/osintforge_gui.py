@@ -543,13 +543,14 @@ class OSINTForgeGUI:
 
         input_frame = tk.Frame(self.main_frame)
         input_frame.pack(pady=10)
-        tk.Label(input_frame, text="Target URL:").pack(side=tk.LEFT)
+        tk.Label(input_frame, text="Target Domain:").pack(side=tk.LEFT)
         self.ssl_entry = tk.Entry(input_frame, width=50)
         self.ssl_entry.pack(side=tk.LEFT, padx=5)
 
         button_frame = tk.Frame(self.main_frame)
         button_frame.pack()
         tk.Button(button_frame, text="Run SSL Lookup", command=self.run_ssl_certificate).pack(side=tk.LEFT, padx=5)
+        tk.Button(button_frame, text="Export as CSV", command=self.export_ssl_results).pack(side=tk.LEFT, padx=5)
         tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
 
         self.ssl_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
@@ -563,13 +564,42 @@ class OSINTForgeGUI:
             return
 
         self.ssl_output_box.delete("1.0", tk.END)
+
         buffer = StringIO()
         sys.stdout = buffer
-        ssl_certificate_run(target)
-        sys.stdout = sys.__stdout__
+
+        try:
+            self.ssl_results = ssl_certificate_run(target)
+        except Exception as e:
+            print(f"[ERROR] SSL lookup failed: {e}")
+            self.ssl_results = []
+        finally:
+            sys.stdout = sys.__stdout__
 
         output = buffer.getvalue()
         self.ssl_output_box.insert(tk.END, output)
+
+
+    def export_ssl_results(self):
+        if not hasattr(self, "ssl_results") or not self.ssl_results:
+            messagebox.showinfo("Info", "No SSL results to export.")
+            return
+
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".csv",
+            filetypes=[("CSV Files", "*.csv")],
+            title="Save SSL results"
+        )
+
+        if file_path:
+            with open(file_path, "w", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["Field", "Value"])
+
+                for row in self.ssl_results:
+                    writer.writerow([row["field"], row["value"]])
+
+            messagebox.showinfo("Exported", f"Results saved to:\n{file_path}")
 
 
     def show_subdomain_enumeration(self):
