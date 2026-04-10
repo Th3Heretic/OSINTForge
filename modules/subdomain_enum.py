@@ -23,6 +23,18 @@ def _project_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
+def normalise_domain(domain: str) -> str:
+    """
+    Clean user input down to a bare domain for subdomain enumeration.
+    """
+    domain = domain.strip().lower()
+    domain = domain.replace("https://", "").replace("http://", "")
+    domain = domain.strip("/")
+    if domain.startswith("www."):
+        domain = domain[4:]
+    return domain
+
+
 def load_wordlist() -> list[str]:
     """
     Load and clean the local subdomain wordlist.
@@ -82,6 +94,7 @@ def run(domain: str, threads: int = 50) -> None:
     """
     Run subdomain enumeration against a domain.
     """
+    domain = normalise_domain(domain)
     print(f" - Running subdomain enumeration for: {domain}")
 
     wordlist = load_wordlist()
