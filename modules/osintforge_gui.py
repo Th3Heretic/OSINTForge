@@ -303,11 +303,11 @@ class OSINTForgeGUI:
         button_frame = tk.Frame(self.main_frame)
         button_frame.pack()
         tk.Button(button_frame, text="Run DNS Lookup", command=self.run_dns_lookup).pack(side=tk.LEFT, padx=5)
+        tk.Button(button_frame, text="Export as CSV", command=self.export_dns_results).pack(side=tk.LEFT, padx=5)
         tk.Button(button_frame, text="Back to Home", command=self.show_home_screen).pack(side=tk.LEFT, padx=5)
 
         self.dns_output_box = tk.Text(self.main_frame, wrap=tk.WORD)
         self.dns_output_box.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
-
 
     def run_dns_lookup(self):
         target = self.dns_entry.get().strip()
@@ -316,14 +316,41 @@ class OSINTForgeGUI:
             return
 
         self.dns_output_box.delete("1.0", tk.END)
+
         buffer = StringIO()
         sys.stdout = buffer
-        dns_lookup_run(target)
-        sys.stdout = sys.__stdout__
+
+        try:
+            self.dns_results = dns_lookup_run(target)
+        except Exception as e:
+            print(f"[ERROR] DNS Lookup failed: {e}")
+            self.dns_results = []
+        finally:
+            sys.stdout = sys.__stdout__
 
         output = buffer.getvalue()
         self.dns_output_box.insert(tk.END, output)
 
+    def export_dns_results(self):
+        if not hasattr(self, "dns_results") or not self.dns_results:
+            messagebox.showinfo("Info", "No DNS results to export.")
+            return
+
+        file_path = filedialog.asksaveasfilename(
+            defaultextension=".csv",
+            filetypes=[("CSV Files", "*.csv")],
+            title="Save DNS results"
+        )
+
+        if file_path:
+            with open(file_path, "w", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerow(["Record Type", "Value"])
+
+                for record in self.dns_results:
+                    writer.writerow([record["type"], record["value"]])
+
+            messagebox.showinfo("Exported", f"Results saved to:\n{file_path}")
 
     ### [DEPRECATED] ###
 
