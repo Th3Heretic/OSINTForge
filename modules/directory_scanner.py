@@ -9,6 +9,7 @@ from __future__ import annotations
 
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 
@@ -21,7 +22,7 @@ def _project_root() -> Path:
     return Path(__file__).resolve().parent.parent
 
 
-def _normalise_target(target: str) -> str:
+def normalise_target(target: str) -> str:
     """
     Normalise user input into a usable base URL.
     Accepts bare domains like 'example.com' and converts them to HTTPS.
@@ -56,10 +57,30 @@ def load_wordlist() -> list[str]:
     return sorted(set(word.strip().strip("/") for word in cleaned if word.strip()))
 
 
-def run(target: str) -> None:
-    """
-    Scan a target URL for interesting directory responses.
-    """
+def _scan_single(session, base_url, directory):
+    url = urljoin(base_url, f"{directory}/")
+
+    try:
+        response = session.get(
+            url,
+            timeout=5,
+            allow_redirects=False
+        )
+
+        if response.status_code in {200, 301, 302, 307, 308, 401, 403, 410, 418}:
+            return {
+                "url": url,
+                "status": response.status_code,
+                "reason": response.reason
+            }
+
+    except requests.exceptions.RequestException:
+        return None
+
+    return None
+
+
+def run(target: str, threads: int = 30) -> None:
     print(f" - Scanning directories on: {target}")
 
     wordlist = load_wordlist()
@@ -68,45 +89,31 @@ def run(target: str) -> None:
         return
 
     try:
-        base_url = _normalise_target(target)
+        base_url = normalise_target(target)
     except Exception as exc:
         print(f" - Error normalising target: {exc}")
         return
-
-    interesting_statuses = {200, 301, 302, 307, 308, 401, 403}
-    found = []
 
     session = requests.Session()
     session.headers.update({
         "User-Agent": "OSINTForge/1.0"
     })
 
-    for directory in wordlist:
-        url = urljoin(base_url, f"{directory}/")
+    found = []
 
-        try:
-            response = session.get(
-                url,
-                timeout=5,
-                allow_redirects=False
-            )
+    with ThreadPoolExecutor(max_workers=threads) as executor:
+        futures = [
+            executor.submit(_scan_single, session, base_url, directory)
+            for directory in wordlist
+        ]
 
-            if response.status_code in interesting_statuses:
-                print(f" - Found: {url} -> {response.status_code} {response.reason}")
-                found.append({
-                    "url": url,
-                    "status_code": response.status_code,
-                    "reason": response.reason
-                })
-
-        except requests.exceptions.ConnectionError:
-            print(f" - Error: Could not connect to target '{base_url}'.")
-            return
-        except requests.exceptions.RequestException as exc:
-            # Ignore noisy per-path failures but keep going
-            continue
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                print(f" - Found: {result['url']} -> {result['status']} {result['reason']}")
+                found.append(result)
 
     if not found:
         print(" - No interesting directories found.")
     else:
-        print(f" - Scan complete. {len(found)} interesting directory/directories discovered.")
+        print(f" - Scan complete. {len(found)} interesting directories discovered.")
