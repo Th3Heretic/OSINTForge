@@ -1,126 +1,131 @@
-<h1><b><u>OSINTForge Investigation Tool</u></b></h1>
+# OSINTForge
 
-Please note, some of these modules aren't perfect and may not work for whatever reason on your system. Also, this is a 
-passion project so more updates or modules may be released at a later time but don't expect them to be regular. 
+OSINTForge is a modular Open-Source Intelligence (OSINT) framework designed to assist cybersecurity practitioners, investigators, and researchers in gathering and analysing publicly available data.
 
-Thanks, and I hope you enjoy using this early access OSINT tool :)
+The tool provides both a Command-Line Interface (CLI) and a Graphical User Interface (GUI), enabling flexible usage depending on the user's workflow.
 
-<h2><u>Project structure: </h2></u> 
-OSINTForge/ <br>
-├── documentation            # Filled with usage documentation for each module <br> 
-│   ├── directory_scanner.txt  <br>
-│   ├── dns_lookup.txt <br>
-│   ├── metadata_extraction.txt<br>
-│   ├── port_scanner.txt <br>
-│   ├── reverse_dns.txt <br>
-│   ├── ssl_certificate.txt <br>
-│   ├── reverse_image_search.txt <br>
-│   ├── OSINTForge.txt <br>
-│   ├── subdomain_enum.txt <br>
-│   ├── ip_geolocation.txt <br>
-│   ├── website_metadata.txt <br>
-│   └── whois_lookup.txt <br>
-├── modules/ <br>
-│   ├── __init__.py          # To mark this as a package <br>
-│   ├── directory_scanner.py # Ninth module <br>
-│   ├── dns_lookup.py        # First module <br>
-│   ├── email_validation.py  # Eighth module <br>
-│   ├── metadata_extraction.py # Second module <br>
-│   ├── port_scanner.py      # Sixth module <br>
-│   ├── reverse_dns.py       # Eleventh module <br>
-│   ├── ssl_certificate.py   # Tenth module <br>
-│   ├── subdomain_enum.py    # Fifth module <br>
-│   ├── traceroute.py        # Twelfth module <br>
-│   ├── ip_geolocation.py    # Third module <br>
-│   ├── website_metadata.py  # Seventh module <br>
-│   └── whois_lookup.py      # Fourth module <br>
-├── references.txt           # Sources and methodology documentation <br>
-├── osintforge.py            # Main CLI script <br>
-├── README.md                # Project overview <br>
-├── LICENSE                  # GPL v3 license <br>
-└── requirements.txt         # Python dependencies <br>
+---
 
-<h2><u>Installing the dependencies: </u></h2>
-- using the terminal navigate to the project folder
-- to check that the requirements.txt is present, run: 
->ls 
-- Once you have confirmed its presence in the cwd run:
->pip install -r requirements.txt
+## Features
+
+- Modular OSINT architecture
+- GUI-based execution
+- CLI support for scripting and automation
+- Export functionality
+- Multi-threaded scanning where applicable
+- Built with Python for portability and extensibility
+
+---
+
+## Modules
+
+| Module | Description |
+|------|-------------|
+| DNS Lookup | Retrieves A, MX, TXT records |
+| WHOIS Lookup | Domain registration data |
+| Port Scanner | Detects open TCP ports |
+| Reverse DNS | Maps IP → hostname |
+| SSL Certificate | Extracts certificate details |
+| Directory Scanner | Finds hidden web directories |
+| Subdomain Enumeration | Discovers subdomains via wordlist |
+| Username Enumeration | Checks username across platforms |
+| Traceroute | Maps network path |
+| Metadata Extraction | Extracts file metadata using ExifTool |
+
+---
+## Installation
+
+### CLI (Advanced)
+Navigate to OSINTForge and type the following
+```bash
+pip install -r requirements.txt
+```
+
+>Automatic dependency installation is on the way, soon :)
+
+---
+
+## Usage
+
+### GUI (Recommended)
+
+>Double-click osintforge.exe inside the OSINTForge directory
+
+or navigate to the OSINTForge directory and run:
+
+```bash
+python osintforge_gui.py
+```
+
+### CLI (Advanced)
+
+#### Syntax
+```bash
+python osintforge.py -m <module> -t <target>
+```
+#### Example
+```bash
+python osintforge.py -m dns_lookup -t example.com
+```
+
+---
+
+## Project Structure
+```
+OSINTForge/ 
+├── modules/
+├── data/
+├── tools/
+├── documentation/
+├── osintforge.py
+├── osintforge_gui.py
+├── requirements.txt
+├── README.md
+├── LICENSE
+├── references.txt
+```
+
+---
+
+## External Dependencies
+
+### ExifTool (Metadata module)
+>The metadata extraction module requires ExifTool to function and is bundled in:
+```
+tools/windows/exiftool.exe
+```
+`(The module auto resolves the local filepath)`
+
+---
+
+## Ethical Use Disclaimer
+```
+This tool is intended strictly for:
+
+Educational purposes
+Authorised security testing
+OSINT investigations
+
+Unauthorised use against systems without permission may violate UK law, including the Computer Misuse Act 1990.
+```
+
+---
+
+## Limitations
 
 
-To use the <b>dns_lookup</b> tool:
->_python osintforge.py -m dns_lookup -t example.com_
-
-- m is specifying the module to use
-- t specifies the target domain
-
-note: The target should be a domain name, not a full URL.
+- Some platforms implement anti-bot protections (username enumeration may return partial results)
+- DNS and WHOIS data may be limited by privacy protections
+- External tools (e.g. ExifTool) must be correctly bundled
 
 
-To use the <b>metadata_extraction</b> tool:
->_python osintforge.py -m metadata_extraction -t /absolute/path/to/image.jpg_
+---
 
-- m once again specifies the module
-- t is specifying the target image filepath
-
-DEPRECATED
-To use the <b>ip_geolocation</b> tool:
-_python osintforge.py -m ip_geolocation -t 0.0.0.0_
-
--t is used to specify a target IP address
--can be used in conjunction with the dns_lookup and subdomain_enum modules
+## Future Development
 
 
-To use the <b>whois_lookup</b> tool:
->_python osintforge.py -m whois_lookup -t example.com_
-
-- t specifies a target domain name
-
-
-To use the <b>subdomain_enum</b> tool:
->_python osintforge.py -m subdomain_enum -t example.com_
-
-- t specifies a target domain name
-
-To use the <b>port_scanner</b> tool:
->_python osintforge.py -m port_scanner -t 8.8.8.8_
-
-- t specifies a target IP to audit for open ports
-
-DEPRECATED
-To use the <b>website_metadata</b> tool:
-_python osintforge.py -m website_metadata -t example.com_
-
--t specifies a domain name
-
-DEPRECATED
-To use the email_validation tool:
-_python osintforge.py -m email_validation -t email@example.com_
-
--t specifies an email address
-
-To use the <b>directory_scanner</b> tool:
->_python osintforge.py -m directory_scanner -t https://example.com_
-
-- t specifies a URL to inspect
-
-To use the <b>ssl_certificate</b> tool:
->_python osintforge.py -m ssl_certificate -t example.com_
-
-- t specifies the target URL or IP
-
-To use the <b>reverse_dns</b> tool:
->_python osintforge.py -m reverse_dns -t 8.8.8.8_
-
-- t specifies the IP assigned to a domain
-
-To use the <b>traceroute</b> tool:
->_python osintforge.py -m traceroute -t example.com_
-
-- t specifies a target URL
-
-To use the <b>username_enum</b> tool:
->_python osintforge.py -m username_enum -t <username>_
-
-- t specifies the username to search for
-
+- GUI improvements (module descriptions, UX refinement)
+- Unified JSON output format
+- Module chaining (workflow automation)
+- Report generation (PDF/Markdown)
+- API integrations (Shodan, Censys)
