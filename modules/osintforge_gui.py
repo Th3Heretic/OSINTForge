@@ -245,7 +245,7 @@ class OSINTForgeGUI:
     def run_directory_scan(self):
         target = self.target_entry.get().strip()
         if not target:
-            messagebox.showerror("Error", "Please enter a target URL.")
+            messagebox.showerror("Error", "Please enter a target Domain/URL.")
             return
 
         self.output_box.delete("1.0", tk.END)
@@ -260,11 +260,15 @@ class OSINTForgeGUI:
         output = buffer.getvalue()
         self.output_box.insert(tk.END, output)
 
-        # Basic CSV-ready parsing (status lines)
+        # Normalised CSV parsing (status codes)
         for line in output.splitlines():
-            if " - " in line and line.startswith("http"):
-                parts = line.split(" - ")
-                self.scan_results.append(parts)
+            if line.startswith(" - Found: "):
+                try:
+                    found_part = line.replace(" - Found: ", "", 1)
+                    url_part, status_part = found_part.split(" -> ", 1)
+                    self.scan_results.append([url_part, status_part])
+                except ValueError:
+                    continue
 
 
     def export_results(self):
