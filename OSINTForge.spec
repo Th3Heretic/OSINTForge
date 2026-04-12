@@ -3,7 +3,7 @@
 
 a = Analysis(
     ['osintforge_gui.py'],
-    pathex=[],
+    pathex=['.'],
     binaries=[('tools\\windows\\exiftool.exe', 'tools\\windows')],
     datas=[('data', 'data'), ('media', 'media'), ('documentation', 'documentation'), ('tools\\windows\\exiftool_files', 'tools\\windows\\exiftool_files')],
     hiddenimports=[],
