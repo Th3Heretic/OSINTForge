@@ -3,26 +3,21 @@ from tkinter import filedialog, messagebox
 import csv
 from io import StringIO
 import sys
-
-# Traceroute import
-from traceroute import run as traceroute_run
-
-# WHOIS Lookup import
-from whois_lookup import run as whois_lookup_run
-
-# Import each module's run function
-from directory_scanner import run as directory_scan_run
-from dns_lookup import run as dns_lookup_run
-from email_validation import run as email_validation_run
-from ip_geolocation import run as ip_geolocation_run
-from metadata_extraction import run as metadata_extraction_run
-from port_scanner import run as port_scanner_run
-from reverse_dns import run as reverse_dns_run
-from ssl_certificate import run as ssl_certificate_run
-from subdomain_enum import run as subdomain_enum_run
-from username_enum import run as username_enum_run
-from website_metadata import run as website_metadata_run
 import threading
+
+from modules.traceroute import run as traceroute_run
+from modules.whois_lookup import run as whois_lookup_run
+from modules.directory_scanner import run as directory_scan_run
+from modules.dns_lookup import run as dns_lookup_run
+from modules.email_validation import run as email_validation_run
+from modules.ip_geolocation import run as ip_geolocation_run
+from modules.metadata_extraction import run as metadata_extraction_run
+from modules.port_scanner import run as port_scanner_run
+from modules.reverse_dns import run as reverse_dns_run
+from modules.ssl_certificate import run as ssl_certificate_run
+from modules.subdomain_enum import run as subdomain_enum_run
+from modules.username_enum import run as username_enum_run
+from modules.website_metadata import run as website_metadata_run
 
 class OSINTForgeGUI:
     def __init__(self, root):
