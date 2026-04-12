@@ -70,10 +70,10 @@ If no useful results are found:
 
 ## Common Use Cases
 
-- `Identifying hidden web resources such as /admin/, /login/, or /backup/
-- `Detecting misconfigured web directories
-- `Supporting reconnaissance during authorised security testing
-- `Mapping visible parts of a target web application
+- Identifying hidden web resources such as /admin/, /login/, or /backup/
+- Detecting misconfigured web directories
+- Supporting reconnaissance during authorised security testing
+- Mapping visible parts of a target web application
 
 ---
 
